@@ -90,6 +90,37 @@ class Login extends StatelessWidget {
       )
       ),
       Positioned(
+        top: 307,
+        left: 34,
+        child: Container(
+        width: 343,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+  ),
+  child: Material(
+    child: TextField(// to trigger disabledBorder
+    style: TextStyle(color: Colors.black),
+ decoration: InputDecoration(
+     
+     filled: true,
+     fillColor: Color(0xFFF2F2F2),
+     enabledBorder: OutlineInputBorder(
+       borderRadius: BorderRadius.all(Radius.circular(8)),
+       borderSide: BorderSide(width: 2,color: Colors.black),
+     ),
+     hintText: "",
+     hintStyle: TextStyle(fontSize: 16,color: Color(0xFFB3B1B1)),
+     //errorText: snapshot.error,
+ ),
+ //controller: _passwordController,
+ //onChanged: _authenticationFormBloc.onPasswordChanged,
+                              obscureText: false,
+),
+  ),
+      )
+      ),
+      Positioned(
         top: 366,
         left: 56,
         child: Container(
@@ -108,6 +139,36 @@ class Login extends StatelessWidget {
           letterSpacing: 0,
           fontWeight: FontWeight.bold,
         height: 1)),
+  ),
+      )
+      ),Positioned(
+        top: 401,
+        left: 34,
+        child: Container(
+        width: 343,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+  ),
+  child: Material(
+    child: TextField(// to trigger disabledBorder
+    style: TextStyle(color: Colors.black),
+ decoration: InputDecoration(
+     
+     filled: true,
+     fillColor: Color(0xFFF2F2F2),
+     enabledBorder: OutlineInputBorder(
+       borderRadius: BorderRadius.all(Radius.circular(8)),
+       borderSide: BorderSide(width: 2,color: Colors.black),
+     ),
+     hintText: "",
+     hintStyle: TextStyle(fontSize: 16,color: Color(0xFFB3B1B1)),
+     //errorText: snapshot.error,
+ ),
+ //controller: _passwordController,
+ //onChanged: _authenticationFormBloc.onPasswordChanged,
+                              obscureText: false,
+),
   ),
       )
       ),

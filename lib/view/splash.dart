@@ -113,7 +113,6 @@ class Splash extends StatelessWidget {
         width: 170,
         height: 74,
         child: ElevatedButton(
- 
   onPressed: () {},
   child: Text('Register'),
   style: ElevatedButton.styleFrom(
