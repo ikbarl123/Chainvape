@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:chainvape/view/login.dart';
 
 class Splash extends StatelessWidget {
   const Splash({ Key? key }) : super(key: key);
@@ -23,7 +24,7 @@ class Splash extends StatelessWidget {
         decoration: BoxDecoration(
           image : DecorationImage(
           image: AssetImage('assets/images/Image5.png'),
-          fit: BoxFit.fitWidth
+          fit: BoxFit.cover
       ),
   )
       )
@@ -49,7 +50,7 @@ class Splash extends StatelessWidget {
       )
       ),Positioned(
         top: 560,
-        left: 205,
+        left: 195,
         child: Container(
       width: 170,
       height: 74,
@@ -66,7 +67,12 @@ class Splash extends StatelessWidget {
         height: 74,
         child: ElevatedButton(
  
-  onPressed: () {},
+  onPressed: () {
+    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => Login()),
+  );
+  },
   child: Text('Login'),
   style: ElevatedButton.styleFrom(
     primary: Color.fromRGBO(30, 81, 40, 1),
@@ -88,7 +94,7 @@ class Splash extends StatelessWidget {
     )
       ),Positioned(
         top: 560,
-        left: 35,
+        left: 30,
         child: Container(
       width: 170,
       height: 74,
