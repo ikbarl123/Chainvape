@@ -1,4 +1,4 @@
-import 'package:chainvape/view/auth/splash.dart';
+import 'package:chainvape/view/auth/authbase.dart';
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/main/base.dart';
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     //final wordPair = WordPair.random();
     return MaterialApp(
       title: 'Flame',
-      home: Splash()
+      home: authBase()
     );
   }
 }
