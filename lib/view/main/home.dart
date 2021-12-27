@@ -19,29 +19,28 @@ class home extends StatelessWidget {
           Positioned(
         top: 0,
         left: -10,
-        child: Container(
-        width: 421,
-        height: 624,
-        decoration: BoxDecoration(
-          borderRadius : BorderRadius.only(
-            topLeft: Radius.circular(8),
-            topRight: Radius.circular(8),
-            bottomLeft: Radius.circular(8),
-            bottomRight: Radius.circular(8),
-          ),
+        child: Center(
+          child: Container(
+          width: 421,
+          height: 624,
+          decoration: BoxDecoration(
+            borderRadius : BorderRadius.only(
+              topLeft: Radius.circular(8),
+              topRight: Radius.circular(8),
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            ),
       image : DecorationImage(
-          image: AssetImage('assets/images/Image1.png'),
-          fit: BoxFit.fitWidth
+            image: AssetImage('assets/images/Image1.png'),
+            fit: BoxFit.fitWidth
       ),
   )
-      )
+      ),
+        )
       ),Positioned(
         top: 384.1313171386719,
         left: 179,
-        child: SvgPicture.asset(
-        'assets/images/vector1.svg',
-        semanticsLabel: 'vector'
-      )
+        child: Image(image: AssetImage('assets/images/search.png'))
         ),Positioned(
         top: 40,
         left: 35,
