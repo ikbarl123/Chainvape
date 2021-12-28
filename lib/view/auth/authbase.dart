@@ -60,7 +60,7 @@ class authButton extends StatelessWidget {
           height: 74,
           child: ElevatedButton(
                 onPressed: () {},
-                child: Text('Register'),
+                child: Text('Register',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(25, 26, 25, 1),
                   shape: RoundedRectangleBorder(
@@ -85,7 +85,7 @@ class authButton extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => loginBase()),
                     );
                     },
-                    child: Text('Login'),
+                    child: Text('Login',style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromRGBO(30, 81, 40, 1),
                       shape: RoundedRectangleBorder(

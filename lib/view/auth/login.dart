@@ -166,9 +166,9 @@ class loginWidget extends StatelessWidget {
             onPressed: () {
               Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BaseLayout()),);
+              MaterialPageRoute(builder: (context) => MainLayout()),);
             },
-            child: Text('Login'),
+            child: Text('Login', style: TextStyle(color: Colors.white),),
             style: ElevatedButton.styleFrom(
               primary: Color.fromRGBO(30, 81, 40, 1),
               shape: RoundedRectangleBorder(

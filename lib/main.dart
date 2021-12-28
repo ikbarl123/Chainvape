@@ -1,6 +1,5 @@
 import 'package:chainvape/view/auth/authbase.dart';
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/base.dart';
 
 
 void main() => runApp(MyApp());
@@ -10,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //final wordPair = WordPair.random();
     return MaterialApp(
-      title: 'Flame',
+      title: 'Chainvape',
       home: authBase()
     );
   }
