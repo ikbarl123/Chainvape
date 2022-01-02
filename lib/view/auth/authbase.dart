@@ -1,5 +1,7 @@
+import 'package:chainvape/view/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/auth/login.dart';
+import '';
 
 
 
@@ -59,7 +61,12 @@ class authButton extends StatelessWidget {
           width: 170,
           height: 74,
           child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Register()),
+                    );
+                },
                 child: Text('Register',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   primary: Color.fromRGBO(25, 26, 25, 1),
@@ -82,7 +89,7 @@ class authButton extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => loginBase()),
+                      MaterialPageRoute(builder: (context) => Login()),
                     );
                     },
                     child: Text('Login',style: TextStyle(color: Colors.white)),

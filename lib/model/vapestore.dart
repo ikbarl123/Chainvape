@@ -1,31 +1,12 @@
 
-class vapestore
+class Vapestore
 {
- late double _latitude;
- late double _longtitude;
- late String _namaToko;
- late String _alamat;
- late String _img;
+ String _idStore;
+ double _latitude;
+ double _longtitude;
+ String _namaToko;
+ String _alamat;
+ String _img;
 
- void addCoordinate(double Ltd, double Lng)
- {
-   this._latitude=Ltd;
-   this._longtitude=Lng;
- } 
-
-  void addNamaToko(String namaToko)
-  {
-    this._namaToko=namaToko;
-  }
-
-  void addAlamat(String alamat)
-  {
-    this._alamat=alamat;
-  }
-  
-  void addImg(String img)
-  {
-    this._img=img;
-  }
-
+Vapestore(this._idStore,this._latitude,this._longtitude,this._namaToko,this._alamat,this._img);
 }

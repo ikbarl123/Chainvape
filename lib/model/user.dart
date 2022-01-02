@@ -1,23 +1,10 @@
 import 'dart:ffi';
 
-class user
+class User
 {
-  late String _nama;
-  late String _username;
+  String _id;
+  String _nama;
+  String _username;
 
-  void addNama(String nama)
-  {
-    this._nama=nama;
-  }
-  void addUsername(String username)
-  {
-    this._username=username;
-  }
-
-  String getNama(){
-    return _nama;
-  }
-  String getUsername(){
-    return _username;
-  }
+User(this._id,this._nama,this._username);
 }
