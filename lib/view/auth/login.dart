@@ -10,6 +10,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  TextEditingController _usernameController = new TextEditingController();
+  
+  TextEditingController _passwordController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,7 +49,7 @@ class _LoginState extends State<Login> {
                           child: TextField(// to trigger disabledBorder
                           style: TextStyle(color: Colors.black),
                       decoration: buildTextfield(""),
-                      //controller: _passwordController,
+                      controller: _usernameController,
                       //onChanged: _authenticationFormBloc.onPasswordChanged,
                                                         obscureText: false,
                       ),
@@ -68,7 +73,7 @@ class _LoginState extends State<Login> {
                           child: TextField(// to trigger disabledBorder
                           style: TextStyle(color: Colors.black),
                       decoration: buildTextfield(""),
-                      //controller: _passwordController,
+                      controller: _passwordController,
                       //onChanged: _authenticationFormBloc.onPasswordChanged,
                                                         obscureText: true,
                       ),
