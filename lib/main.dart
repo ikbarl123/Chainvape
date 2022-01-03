@@ -1,4 +1,4 @@
-import 'package:chainvape/view/auth/authbase.dart';
+import 'package:chainvape/view/auth/splash.dart';
 import 'package:flutter/material.dart';
 
 

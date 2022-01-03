@@ -37,8 +37,7 @@ class authPage extends StatelessWidget {
         Image.asset('assets/images/Chainvapelogos_transparent21.png',
         height: 69, width: 302,),
         SizedBox(height: 300,),
-        authButton(),
-        
+        authButton(),     
       ]
       ),
     ]);

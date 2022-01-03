@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/home.dart';
+import 'package:chainvape/view/main/tabs/gmap.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -16,8 +16,7 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
     return DefaultTabController(
         length: 3,
       child: Scaffold(
-
-          bottomSheet: Container(
+          bottomNavigationBar: Container(
              color: Color.fromRGBO(226, 252, 229, 1),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -65,10 +64,12 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
       body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         children: [
-          home(),
-          home(),
-          home(),
+          Gmap(),
+          Gmap(),
+          Gmap(),
         ],
-      )));
+      )
+      )
+      );
   }
 }
