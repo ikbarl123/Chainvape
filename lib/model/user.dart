@@ -1,4 +1,4 @@
-import 'dart:ffi';
+// @dart=2.9
 
 class User
 {
