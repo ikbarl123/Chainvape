@@ -1,11 +1,13 @@
 // @dart=2.9
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:chainvape/model/auth.dart';
 import 'package:mvc_application/prefs.dart';
 import 'package:chainvape/bloc/AppUrl.dart';
 
 class AuthRepository {
+  get hasToken => null;
 
   Future loginUser (String _email, String _password, String device) async
   {
@@ -44,6 +46,22 @@ return LoginAuth.fromJson(jsonResponse);
   }
   }
 
+  Future getData(String token) async{
+    try{
+      var response = await http.get(
+        Uri.parse(AppUrl.Me),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Accept': 'application/json'
+        }
+      );
+      var resbody = jsonDecode(response.body);
+      return Logout.fromJson(resbody);
+    }catch(e)
+    {return e;
+    }
+  }
+
   Future hasToken() async{
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences local = await _prefs;
@@ -57,8 +75,13 @@ return LoginAuth.fromJson(jsonResponse);
     final SharedPreferences local = await _prefs;
     local.setString("token_sanctum", token);
   }
+
   Future unsetLocalToken() async{
     Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences local = await _prefs;
     local.setString("token_sanctum", "");
   }
+
+  
+  
+  

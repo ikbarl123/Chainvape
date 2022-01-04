@@ -1,5 +1,4 @@
-// @dart=2.9
-import 'package:equatable/equatable.dart';
+part of 'auth_bloc.dart';
 
 abstract class AuthState extends Equatable {
   const AuthState();
@@ -8,11 +7,11 @@ abstract class AuthState extends Equatable {
   List<Object> get props => [];
 }
 
-class AuthInit extends AuthState {}
+class AuthInitialize extends AuthState {}
 class AuthLoading extends AuthState{}
 class AuthHasToken extends AuthState{
   final String token;
-  AuthHasToken({this.token});
+  AuthHasToken({required this.token});
    @override
   List<Object> get props => [token];
 }
@@ -21,7 +20,7 @@ class AuthFailed extends AuthState{}
 class AuthData extends AuthState{
   final String name;
   final String email;
-  AuthData({this.email,this.name});
+  AuthData({required this.email,required this.name});
    @override
   List<Object> get props => [name, email];
 }

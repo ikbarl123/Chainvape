@@ -1,20 +1,20 @@
-// @dart=2.9
-import 'dart:html';
+part of 'auth_bloc.dart';
 
-import 'package:equatable/equatable.dart';
 abstract class AuthEvent extends Equatable {
+  const AuthEvent();
+
   @override
   List<Object> get props => [];
 }
 
 class AppStarted extends AuthEvent{}
 
-class AppCheck extends AuthEvent{}
+class AuthCheck extends AuthEvent{}
 
 class GetDataWithToken extends AuthEvent{
   final String token;
 
-  GetDataWithToken({this.token});
+  GetDataWithToken({required this.token});
   @override
   List<Object> get props => [token];
 }
@@ -23,7 +23,7 @@ class LoggedOut extends AuthEvent{}
 class LoginProcess extends AuthEvent{
   final String email;
   final String password;
-  LoginProcess({this.email,this.password});
+  LoginProcess({required this.email,required this.password});
   @override
   List<Object> get props => [email,password];
 }
