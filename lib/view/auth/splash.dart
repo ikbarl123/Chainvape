@@ -1,34 +1,22 @@
+import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:chainvape/view/auth/register.dart';
+import 'package:chainvape/view/auth/widget/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/auth/login.dart';
-import '';
 
 
 
 
-class authBase extends StatelessWidget {
-  const authBase({ Key? key }) : super(key: key);
+class Splash extends StatelessWidget {
+  final AuthBloc authBloc;
+  const Splash({ Key? key,required this.authBloc }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/Image5.png'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Center(child: authPage()),
-          );
-  }
-}
-
-class authPage extends StatelessWidget {
-  const authPage({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
+          decoration: BuildBG(),
+          child: Center(
+            child: Stack(
       children: [ 
         Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,22 +25,7 @@ class authPage extends StatelessWidget {
         Image.asset('assets/images/Chainvapelogos_transparent21.png',
         height: 69, width: 302,),
         SizedBox(height: 300,),
-        authButton(),     
-      ]
-      ),
-    ]);
-  }
-}
-
-
-
-
-class authButton extends StatelessWidget {
-  const authButton({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+        Row(
   mainAxisAlignment: MainAxisAlignment.center,
   crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -88,7 +61,7 @@ class authButton extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Login()),
+                      MaterialPageRoute(builder: (context) => Login(authBloc: authBloc,)),
                     );
                     },
                     child: Text('Login',style: TextStyle(color: Colors.white)),
@@ -108,6 +81,15 @@ class authButton extends StatelessWidget {
         
       ],
       
-    );
+    )    
+      ]
+      ),
+    ])),
+          );
   }
 }
+
+
+
+
+

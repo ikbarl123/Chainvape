@@ -1,15 +1,36 @@
+import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/main.dart';
+import 'package:chainvape/view/main/home.dart';
 import 'package:chainvape/view/auth/widget/widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Login extends StatefulWidget {
-  const Login({ Key? key }) : super(key: key);
+  final AuthBloc authBloc;
+  const Login({ Key? key,required this.authBloc}) : super(key: key);
 
   @override
   _LoginState createState() => _LoginState();
 }
 
 class _LoginState extends State<Login> {
+  AuthBloc get _authbloc => widget.authBloc;
+
+  TextEditingController _usernameController = new TextEditingController();
+  
+  TextEditingController _passwordController = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+    create: (context)=>_authbloc,
+    child: Login_form(authBloc: _authbloc,),
+    );
+  }
+}
+
+class Login_form extends StatelessWidget {
+  final AuthBloc? authBloc;
+  Login_form({ Key? key,this.authBloc}) : super(key: key);
 
   TextEditingController _usernameController = new TextEditingController();
   
@@ -93,7 +114,7 @@ class _LoginState extends State<Login> {
                         onPressed: () {
                           Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MainLayout()),);
+                          MaterialPageRoute(builder: (context) => Home()),);
                         },
                         child: Text('Login', style: TextStyle(color: Colors.white),),
                         style: ElevatedButton.styleFrom(
@@ -112,7 +133,6 @@ class _LoginState extends State<Login> {
           );
   }
 }
-
 
 
 // class loginPage extends StatelessWidget {

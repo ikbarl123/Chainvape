@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/main/tabs/gmap.dart';
 
-class MainLayout extends StatefulWidget {
+class Home extends StatefulWidget {
+  const Home({ Key? key }) : super(key: key);
+
   @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return MainLayoutState();
-  }
+  _HomeState createState() => _HomeState();
 }
 
-class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
- 
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
