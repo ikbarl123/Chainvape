@@ -1,12 +1,9 @@
-import 'dart:js';
-
 import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:chainvape/bloc/auth_repository.dart';
 import 'package:chainvape/view/auth/splash.dart';
 import 'package:chainvape/view/main/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 void main(){
   final AuthRepository authRepository = AuthRepository();
   runApp(BlocProvider(create: (context)
