@@ -1,4 +1,4 @@
-// @dart=2.9
+
 class Vapestore
 {
  String _idStore;
@@ -6,7 +6,7 @@ class Vapestore
  double _longtitude;
  String _namaToko;
  String _alamat;
- String _img;
+ String _imgurl;
 
-Vapestore(this._idStore,this._latitude,this._longtitude,this._namaToko,this._alamat,this._img);
+Vapestore(this._idStore,this._latitude,this._longtitude,this._namaToko,this._alamat,this._imgurl);
 }

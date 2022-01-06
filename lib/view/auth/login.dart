@@ -100,7 +100,10 @@ class _LoginState extends State<Login> {
                           primary: Color.fromRGBO(30, 81, 40, 1),
                           shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(22)
-                ),),)),
+                ),
+                ),
+                )
+                ),
               ),
             ],
           ),
