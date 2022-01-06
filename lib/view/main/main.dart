@@ -1,5 +1,7 @@
+import 'package:chainvape/view/main/tabs/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/main/tabs/gmap.dart';
+import 'tabs/list.dart';
 
 class MainLayout extends StatefulWidget {
   @override
@@ -24,38 +26,9 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
                 indicator: BoxDecoration(color: Colors.green ,shape: BoxShape.circle),
 
                 tabs: <Widget>[
-                  Tab(child: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-              'assets/images/home.png'),
-          fit: BoxFit.scaleDown,
-        ),
-        shape: BoxShape.circle,
-      ),
-    )),
-
-                 Tab(child: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-              'assets/images/bookmark.png'),
-          fit: BoxFit.fitHeight,
-        ),
-        shape: BoxShape.circle,
-      ),
-    )),
-                  
-                  Tab(child: Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-              'assets/images/setting.png'),
-          fit: BoxFit.scaleDown,
-        ),
-        shape: BoxShape.circle,
-      ),
-    )),
+                  Tab(child: Icon(Icons.home, color: Colors.black, size: 40,)),
+                  Tab(child: Icon(Icons.bookmark, color: Colors.black,size: 40,)),      
+                  Tab(child: Icon(Icons.settings, color: Colors.black,size: 40,)),
                 ],
               ),
             ),
@@ -65,8 +38,8 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
         physics: NeverScrollableScrollPhysics(),
         children: [
           Gmap(),
-          Gmap(),
-          Gmap(),
+          ListStore(),
+          SettingTabs(),
         ],
       )
       )
