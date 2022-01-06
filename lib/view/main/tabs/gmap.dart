@@ -1,6 +1,6 @@
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:mvc_application/view.dart';
 
 
 class Gmap extends StatefulWidget {
@@ -39,7 +39,7 @@ class _GmapState extends State<Gmap> {
                           decoration: InputDecoration(
                               suffixIcon: Icon(Icons.search),
                               filled: true,
-                              fillColor: Color(0xFFF2F2F2),
+                              fillColor: Color.fromRGBO(226, 252, 229, 1),
                               enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8)),
                               ),
@@ -59,7 +59,18 @@ class _GmapState extends State<Gmap> {
             ),
           )
         ],
-      )     
+      ),
+      floatingActionButton: ElevatedButton(
+        child: Icon(Icons.list,color: Colors.black,),
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+                          primary: Colors.white,
+                          shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                side: BorderSide(color: Colors.black)
+                ),
+                ),
+      ),     
     );
   }
 }
