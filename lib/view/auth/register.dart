@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/main.dart';
+import 'package:chainvape/view/appui/appui.dart';
 import 'package:chainvape/view/auth/widget/widget.dart';
 
 class Register extends StatefulWidget {
@@ -75,6 +75,30 @@ class _RegisterState extends State<Register> {
                         ),
                 ),
                   ),
+                  SizedBox(height: 10,),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: buildText("Confirm Password")
+                  ),
+                  Center(
+                    child: Container(
+                    width: 343,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                        ),
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: TextField(// to trigger disabledBorder
+                          style: TextStyle(color: Colors.black),
+                      decoration: buildTextfield(""),
+                      //controller: _passwordController,
+                      //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                                        obscureText: true,
+                      ),
+                        ),
+                ),
+                  ),
               SizedBox(height: 10,),
               Align(
                     alignment: Alignment.centerRight,
@@ -92,7 +116,7 @@ class _RegisterState extends State<Register> {
                         },
                         child: Text('Register', style: TextStyle(color: Colors.white),),
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(30, 81, 40, 1),
+                          primary: Color.fromRGBO(25, 26, 25, 1),
                           shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(22)
                               ),

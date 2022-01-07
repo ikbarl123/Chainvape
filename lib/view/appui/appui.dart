@@ -1,6 +1,6 @@
-import 'package:chainvape/view/main/tabs/setting.dart';
+import 'package:chainvape/view/appui/tabs/setting.dart';
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/tabs/gmap.dart';
+import 'package:chainvape/view/appui/tabs/gmap.dart';
 import 'tabs/list.dart';
 
 class MainLayout extends StatefulWidget {

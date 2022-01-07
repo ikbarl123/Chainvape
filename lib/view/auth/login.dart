@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:chainvape/view/main/main.dart';
+import 'package:chainvape/view/appui/appui.dart';
 import 'package:chainvape/view/auth/widget/widget.dart';
 
 class Login extends StatefulWidget {
