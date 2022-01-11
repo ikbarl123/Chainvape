@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chainvape/view/appui/appui.dart';
 import 'package:chainvape/view/auth/widget/widget.dart';
+import 'package:get/get.dart';
 
 class Register extends StatefulWidget {
   const Register({ Key? key }) : super(key: key);
@@ -110,9 +111,7 @@ class _RegisterState extends State<Register> {
                         ),
                         child: ElevatedButton(               
                         onPressed: () {
-                          Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MainLayout()),);
+                          Get.to(() => MainLayout());
                         },
                         child: Text('Register', style: TextStyle(color: Colors.white),),
                         style: ElevatedButton.styleFrom(

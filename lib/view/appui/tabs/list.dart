@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:chainvape/model/vapestore.dart';
 import 'package:flutter/material.dart';
 
+
 class ListStore extends StatefulWidget {
   const ListStore({ Key? key }) : super(key: key);
 
@@ -12,13 +13,18 @@ class ListStore extends StatefulWidget {
 
 class _ListStoreState extends State<ListStore> {
 
-  List<Vapestore> listvapestore=[
-    Vapestore("10000",20.0,20.0,"PTalimuntung","bandung","404"),
-    Vapestore("20000",20.0,20.0,"aku","bandung","404"),
-    Vapestore("30000",20.0,20.0,"gantebf","bandung","404"),
-    Vapestore("410000",20.0,20.0,"gantebf","bandung","404"),
+ // List listvapestore=[];
 
+  List<Vapestore> listvapestore=[
+    Vapestore("10000",20.0,20.0,"PTalimuntung","bandung","404",58),
+    Vapestore("20000",20.0,20.0,"aku","bandung","404",58),
+    Vapestore("30000",20.0,20.0,"gantebf","bandung","404",58),
+    Vapestore("410000",20.0,20.0,"gantebf","bandung","404",58),
   ];
+
+
+ 
+  
     @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,13 +44,13 @@ class _ListStoreState extends State<ListStore> {
               {
               return Container(
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide()),
+                  border: Border.all(),
                 ),
                 child: ListTile(
                 title: Text(listvapestore[index].getnama()),
                 leading: Image.network("https://ikbarl.my.id/storage/images/gambar/5th%20Wave.jpg"),
                 trailing: IconButton(icon:Icon(Icons.favorite), onPressed: () {  },),
-                onTap:  () {  },
+                onTap:  () { },
                 ),
               );
             }

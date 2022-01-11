@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:chainvape/view/appui/tabs/gmap.dart';
 import 'tabs/list.dart';
 
+
 class MainLayout extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -12,7 +13,8 @@ class MainLayout extends StatefulWidget {
 }
 
 class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
- 
+
+final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,7 +36,10 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
             ),
           ),
 
-      body: TabBarView(
+      body: Navigator(
+        key: _navKey,
+        onGenerateRoute: (_) => MaterialPageRoute(
+          builder: (_) => TabBarView(
         physics: NeverScrollableScrollPhysics(),
         children: [
           Gmap(),
@@ -42,7 +47,7 @@ class MainLayoutState extends State<MainLayout> with TickerProviderStateMixin {
           SettingTabs(),
         ],
       )
-      )
+      )))
       );
   }
 }

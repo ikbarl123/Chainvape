@@ -1,7 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
+final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
 
 class Gmap extends StatefulWidget {
   const Gmap({ Key? key }) : super(key: key);
@@ -11,7 +13,23 @@ class Gmap extends StatefulWidget {
 }
 
 class _GmapState extends State<Gmap> {
-  static const _initialCameraPos= CameraPosition(target: LatLng(0, 0));
+  static const _initialCameraPos= CameraPosition(target: LatLng(-6.921216508417418, 107.60761891310989),zoom: 14);
+  late String _mapStyle;
+
+ @override
+void initState() {
+  super.initState();
+
+  rootBundle.loadString('assets/map_style.txt').then((string) {
+    _mapStyle = string;
+  });
+}
+
+late GoogleMapController mapController;
+
+
+//...
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +38,10 @@ class _GmapState extends State<Gmap> {
           GoogleMap(
             initialCameraPosition: _initialCameraPos,
             zoomControlsEnabled: false,
-          ),
+            onMapCreated: (GoogleMapController controller) {
+            mapController = controller;
+            mapController.setMapStyle(_mapStyle);
+            }),
           Padding(
             padding: const EdgeInsets.all(30.20),
             child: Column(
@@ -62,7 +83,8 @@ class _GmapState extends State<Gmap> {
       ),
       floatingActionButton: ElevatedButton(
         child: Icon(Icons.list,color: Colors.black,),
-        onPressed: () {},
+        onPressed: () { 
+        },
         style: ElevatedButton.styleFrom(
                           primary: Colors.white,
                           shape: RoundedRectangleBorder(
