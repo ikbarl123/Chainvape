@@ -1,34 +1,60 @@
+import 'dart:convert';
+/// id_store : "1"
+/// lat : 1.0
+/// lng : 1.0
+/// namatoko : "1"
+/// alamat : "1"
+/// imgurl : "1"
 
-class Vapestore
-{
- Vapestore(this._idstore,this._latitude,this._longtitude,this._namaToko,this._alamat,this._imgurl,this._distance);
- final String _idstore;
- final double _latitude;
- final double _longtitude;
- final String _namaToko;
- final String _alamat;
- final String _imgurl;
- final int _distance;
+Vapestore VapestoreFromJson(String str) => Vapestore.fromJson(json.decode(str));
+String VapestoreToJson(Vapestore data) => json.encode(data.toJson());
+class Vapestore {
+  Vapestore({
+      int? idStore, 
+      double? lat, 
+      double? lng, 
+      String? namatoko, 
+      String? alamat, 
+      String? imgurl,}){
+    _idStore = idStore;
+    _lat = lat;
+    _lng = lng;
+    _namatoko = namatoko;
+    _alamat = alamat;
+    _imgurl = imgurl;
+}
 
- // @override
- // List<Object> get props => [_idstore, _latitude, _longtitude,_namaToko,_alamat,_imgurl,_distance];
+  Vapestore.fromJson(dynamic json) {
+    _idStore = json['id_store'];
+    _lat = json['lat'];
+    _lng = json['lng'];
+    _namatoko = json['namatoko'];
+    _alamat = json['alamat'];
+    _imgurl = json['imgurl'];
+  }
+  int? _idStore;
+  double? _lat;
+  double? _lng;
+  String? _namatoko;
+  String? _alamat;
+  String? _imgurl;
 
-String getidstore(){
-  return this._idstore;
-}
-String getnama(){
-  return this._namaToko;
-}
-double getlat(){
-  return this._latitude;
-}
-double getlng(){
-  return this._longtitude;
-}
-String getaddr(){
-  return this._alamat;
-}
-String getimg(){
-  return this._imgurl;
-}
+  int? get idStore => _idStore;
+  double? get lat => _lat;
+  double? get lng => _lng;
+  String? get namatoko => _namatoko;
+  String? get alamat => _alamat;
+  String? get imgurl => _imgurl;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['id_store'] = _idStore;
+    map['lat'] = _lat;
+    map['lng'] = _lng;
+    map['namatoko'] = _namatoko;
+    map['alamat'] = _alamat;
+    map['imgurl'] = _imgurl;
+    return map;
+  }
+
 }
