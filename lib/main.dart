@@ -1,7 +1,6 @@
-import 'package:chainvape/view/auth/splash.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:chainvape/view/view.dart';
 
 
 void main() {
@@ -14,7 +13,13 @@ class MyApp extends StatelessWidget {
     //final wordPair = WordPair.random();
     return GetMaterialApp(
       title: 'Chainvape',
-      home: Splash()
+      home: Splash(),
+      getPages: [
+    GetPage(name: '/', page: () => Splash()),
+    GetPage(name: '/login', page: () => Login()),
+    GetPage(name: '/register', page: () => Register()),
+    GetPage(name: "/main", page: () => MainLayout()),
+      ],
     );
   }
 }
