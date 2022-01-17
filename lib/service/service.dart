@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:html';
 
 
 import 'package:chainvape/model/vapestore.dart';
