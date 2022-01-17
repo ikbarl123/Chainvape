@@ -1,8 +1,6 @@
-import 'dart:async';
-import 'dart:html';
 
-import 'package:chainvape/model/userlocation.dart';
-import 'package:location/location.dart';
+
+part of 'service.dart';
 
 class LocationService {
   Location location = Location();
