@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+part of 'tabs.dart';
 
 class SettingTabs extends StatefulWidget {
   const SettingTabs({ Key? key }) : super(key: key);
