@@ -1,8 +1,6 @@
-import 'package:chainvape/view/register.dart';
-import 'package:flutter/material.dart';
-import 'package:chainvape/view/login.dart';
-import 'package:get/get.dart';
 
+
+part of 'view.dart';
 
 
 

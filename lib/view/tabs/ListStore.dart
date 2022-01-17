@@ -1,7 +1,4 @@
-import 'package:chainvape/model/vapestore.dart';
-import 'detail_store.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+part of 'tabs.dart';
 
 
 class ListVapeStorePage extends StatefulWidget {
@@ -60,19 +57,6 @@ class _ListVapeStorePageState extends State<ListVapeStorePage> {
   }
 }
 
-ElevatedButton BackButton(context) {
-    return ElevatedButton(
-        child: Icon(Icons.arrow_back,color: Colors.black,),
-        onPressed: () {  Navigator.pop(context);
-        },
-        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                side: BorderSide(color: Colors.black)
-                ),
-                ),);
-      }     
 
       Center SearchButton() {
   return Center(

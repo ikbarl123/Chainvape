@@ -1,5 +1,4 @@
-import 'package:chainvape/model/vapestore.dart';
-import 'package:flutter/material.dart';
+part of 'tabs.dart';
 
 class DetailStore extends StatelessWidget {
   const DetailStore({ Key? key, required this.store }) : super(key: key);
@@ -18,7 +17,7 @@ Widget build(BuildContext context) {
           SizedBox(height: 58,),
           title(store.namatoko??'Nama Toko here'),
           SizedBox(height: 29,),
-          Expanded(
+          Center(
             child: Container(
               height: 194,
               width: 315,

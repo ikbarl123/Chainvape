@@ -1,6 +1,4 @@
-import 'tabs/tabs.dart';
-import 'package:flutter/material.dart';
-
+part of 'view.dart';
 
 
 class MainLayout extends StatefulWidget {

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:chainvape/view/appui.dart';
-import 'package:chainvape/view/widget/widget.dart';
-import 'package:get/get.dart';
+part of 'view.dart';
 
 class Register extends StatefulWidget {
   const Register({ Key? key }) : super(key: key);

@@ -1,14 +1,4 @@
-import 'dart:ui';
-import 'dart:convert';
-
-import 'package:chainvape/model/vapestore.dart';
-import 'package:chainvape/service/appurl.dart';
-import 'ListStore.dart';
-import 'detail_store.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:chainvape/service/storeservice.dart';
-import 'package:http/http.dart' as http;
+part of 'tabs.dart';
 
 
 

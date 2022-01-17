@@ -1,8 +1,7 @@
+part of 'tabs.dart';
 
-import 'ListStore.dart';
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter/services.dart' show rootBundle;
+
+
 
 final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
 
