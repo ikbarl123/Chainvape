@@ -74,7 +74,7 @@ class _ListStoreState extends State<ListStore> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => DetailStore(
-                                              store: storeList[index],
+                                              store: state.store[index],
                                             )));
                               },
                             ),

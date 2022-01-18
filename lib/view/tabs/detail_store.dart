@@ -17,17 +17,18 @@ Widget build(BuildContext context) {
           SizedBox(height: 58,),
           title(store.namatoko??'Nama Toko here'),
           SizedBox(height: 29,),
-          Center(
-            child: Container(
-              height: 194,
-              width: 315,
-              decoration:BoxDecoration(border:Border.all(),
-              borderRadius: BorderRadius.all(Radius.circular(20))
+          Expanded(
+            child: Center(
+              child: Container(
+                height: 194,
+                width: 315,
+                decoration:BoxDecoration(border:Border.all(),
+                borderRadius: BorderRadius.all(Radius.circular(20))
+                ),
+                child: Column(children: [
+                  
+                ],) ,
               ),
-              child: Column(children: [
-                
-                
-              ],) ,
             ),
           ),
           SizedBox(height: 28,),

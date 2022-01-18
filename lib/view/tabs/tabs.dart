@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'dart:convert';
 
-import 'package:chainvape/bloc/bloc/vapestore_bloc.dart';
+import 'package:chainvape/bloc/vapestore_bloc.dart';
 import 'package:chainvape/model/vapestore.dart';
 import 'package:chainvape/service/service.dart';
 import 'package:flutter/material.dart';
