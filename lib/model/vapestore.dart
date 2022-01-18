@@ -1,4 +1,6 @@
 import 'dart:convert';
+
+
 /// id_store : "1"
 /// lat : 1.0
 /// lng : 1.0
@@ -56,5 +58,6 @@ class Vapestore {
     map['imgurl'] = _imgurl;
     return map;
   }
+
 
 }
