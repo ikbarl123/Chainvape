@@ -1,4 +1,5 @@
 import 'package:chainvape/bloc/auth_bloc.dart';
+import 'package:chainvape/bloc/vapestore_bloc.dart';
 import 'package:chainvape/service/service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,9 +10,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final AuthService authService = AuthService();
-  final StoreService storeService = StoreService();
-
   @override
   Widget build(BuildContext context) {
     //final wordPair = WordPair.random();
@@ -19,13 +17,16 @@ class MyApp extends StatelessWidget {
       title: 'Chainvape',
       home: MultiRepositoryProvider(
           providers: [
-            RepositoryProvider(create: (context) => storeService),
-            RepositoryProvider(create: (context) => authService),
+            RepositoryProvider(create: (context) => StoreService()),
+            RepositoryProvider(create: (context) => AuthService()),
           ],
           child: MultiBlocProvider(providers: [
-                   BlocProvider<AuthBloc>(
-            create: (BuildContext context) => AuthBloc(authService),
-    ),
+            BlocProvider<AuthBloc>(
+            create: (BuildContext context) => AuthBloc(AuthService()),
+                  ),
+            BlocProvider<VapestoreBloc>(
+            create: (BuildContext context) => VapestoreBloc(StoreService()),
+                  ),
             ],
           child: App(),)
           ),
