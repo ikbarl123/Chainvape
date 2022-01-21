@@ -6,60 +6,77 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chainvape/view/view.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     //final wordPair = WordPair.random();
-    return MaterialApp(
-      title: 'Chainvape',
-      home: MultiRepositoryProvider(
+    return MultiRepositoryProvider(
           providers: [
             RepositoryProvider(create: (context) => StoreService()),
             RepositoryProvider(create: (context) => AuthService()),
           ],
           child: MultiBlocProvider(providers: [
             BlocProvider<AuthBloc>(
-            create: (BuildContext context) => AuthBloc(AuthService()),
-                  ),
+              create: (context) => AuthBloc(AuthService()),
+            ),
             BlocProvider<VapestoreBloc>(
-            create: (BuildContext context) => VapestoreBloc(StoreService()),
-                  ),
-            ],
-          child: App(),)
-          ),
-    );
+              create: (context) => VapestoreBloc(StoreService()),
+            ),
+          ], child: MaterialApp(
+            title: 'Chainvape',
+            home: App(),))
+          );
   }
 }
 
 class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
-
-  
   @override
   Widget build(BuildContext context) {
-    final authBloc = BlocProvider.of<AuthBloc>(context);
-    return BlocBuilder<AuthBloc,AuthState>(    
-                builder: (context, state) {
-                  print(state);
-                if(state is AuthInit) {
-                  authBloc.add(AppCheck());
-                  return Center(child: CircularProgressIndicator(strokeWidth: 5,),);    
-                } 
+            return BlocListener<AuthBloc, AuthState>(
+              bloc: context.read<AuthBloc>(),
+              listener: (context, state) {
                 if(state is AuthHasData){
-                  return MainLayout();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MainLayout()));
+                      } 
+                if(state is AuthFailed){
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Splash()));
                 } 
-                if(state is AuthLoading){               
-                  return Center(child: CircularProgressIndicator(strokeWidth: 5,),);             
-                 }
-                 if(state is AuthFailed){
-                return Splash();
-                }
-                return Container();
-              },
-            
-          );
+      },
+      child: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          print(state);
+          if (state is AuthInit) {
+            context.read<AuthBloc>().add(AppCheck());
+            return Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 5,
+              ),
+            );
+          }
+          if (state is AuthHasData) {
+            return MainLayout();
+          }
+          if (state is AuthLoading) {
+            return Center(
+              child: CircularProgressIndicator(
+                strokeWidth: 5,
+              ),
+            );
+          }
+          return Container();
+        },
+      ),
+    );
   }
 }

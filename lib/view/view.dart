@@ -1,4 +1,7 @@
+import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 
 import 'tabs/tabs.dart';
 

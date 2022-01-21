@@ -12,11 +12,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this._authService) : super(AuthInit()) {
     on<AppCheck>((event, emit)async{
       emit(AuthLoading());
-     final hasToken = await _authService.hasToken();
+     final hasUser = await _authService.hasUser();
      print(state);
-     if(hasToken != "kosong"){
+     if(hasUser != "kosong"){
        print(state);
-       emit(AuthHasData(user: hasToken));
+       emit(AuthHasData(user: hasUser));
      }else {
        emit(AuthFailed());
        print(state);
@@ -25,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<LoggedOut>((event, emit)async{
       emit(AuthLoading());
-     final user = await _authService.hasToken();
+     final user = await _authService.hasUser();
      if(user !="kosong"){
        emit(AuthHasData(user: user));
      }else {

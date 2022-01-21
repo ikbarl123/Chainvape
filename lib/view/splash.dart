@@ -16,17 +16,8 @@ class Splash extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Center(child: authPage()),
-          );
-  }
-}
-
-class authPage extends StatelessWidget {
-  const authPage({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
+          child: Center(
+            child: Stack(
       children: [ 
         Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,22 +26,7 @@ class authPage extends StatelessWidget {
         Image.asset('assets/images/Chainvapelogos_transparent21.png',
         height: 69, width: 302,),
         SizedBox(height: 300,),
-        authButton(),     
-      ]
-      ),
-    ]);
-  }
-}
-
-
-
-
-class authButton extends StatelessWidget {
-  const authButton({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+        Row(
   mainAxisAlignment: MainAxisAlignment.center,
   crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -58,9 +34,8 @@ class authButton extends StatelessWidget {
           width: 170,
           height: 74,
           child: ElevatedButton(
-                onPressed: () {Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const Register()));
+                onPressed: () { Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Register()));
                 },
                 child: Text('Register',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
@@ -81,11 +56,8 @@ class authButton extends StatelessWidget {
           width: 170,
           height: 74,
           child: ElevatedButton(
-                    onPressed: () {
-                     Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const Login()),
-  );
+                    onPressed: () {Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Login()));
                     },
                     child: Text('Login',style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(
@@ -104,6 +76,13 @@ class authButton extends StatelessWidget {
         
       ],
       
-    );
+    ),     
+      ]
+      ),
+    ]),
+          ));
   }
 }
+
+
+

@@ -6,13 +6,17 @@ class  AuthService {
 Future doLogin(String _email, String _password) async {
   try{
   final response = await post(Uri.parse(AppUrl.login),
+  headers: {'Accept': 'application/json'},
   body: {
-    'email':_email,
-    'password':_password
+    'email': _email,
+    'password': _password
   });
  var data = jsonDecode(response.body.toString());
+ print(data);
   return User.fromJson(data);
+
   }catch(e){
+    print(e);
     return e;
   }
 }
@@ -20,6 +24,7 @@ Future doLogin(String _email, String _password) async {
 Future doRegister(String _email, String _password,String _conpassword) async {
   try{
   final response = await post(Uri.parse(AppUrl.login),
+  headers: {'Accept': 'application/json'},
   body: {
     'email':_email,
     'password':_password,
@@ -47,7 +52,7 @@ Future doLogout(String token) async {
   }
 }
 
-Future hasToken() async{
+Future hasUser() async{
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final SharedPreferences local = await _prefs;
   final String user = local.getString("user")??"kosong";
