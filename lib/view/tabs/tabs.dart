@@ -1,5 +1,6 @@
 
 
+import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:chainvape/bloc/vapestore_bloc.dart';
 import 'package:chainvape/model/vapestore.dart';
 import 'package:chainvape/service/service.dart';

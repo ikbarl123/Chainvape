@@ -70,5 +70,13 @@ Future setUser(User user) async{
   local.setString('user', json);
 }
 
+Future clearUser() async{
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final SharedPreferences local = await _prefs;
+  local.setString('user', 'kosong');
+  final String user = local.getString('user')??'error';
+  return user;
+}
+
 
 }

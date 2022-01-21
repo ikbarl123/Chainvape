@@ -25,7 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<LoggedOut>((event, emit)async{
       emit(AuthLoading());
-     final user = await _authService.hasUser();
+     final user = await _authService.clearUser();
      if(user !="kosong"){
        emit(AuthHasData(user: user));
      }else {
@@ -43,6 +43,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
      }else {
        emit(AuthFailed());
      }
-    });
+    }
+    );
+
+    on<RegisterProcess>((event, emit)async{
+      emit(AuthLoading());
+     final user = await _authService.doRegister(event.email, event.password,event.password_confirmation);
+     if(user !="failed"){
+       emit(LoginSuccess());
+       await _authService.setUser(user);
+       emit(AuthHasData(user: user));
+     }else {
+       emit(AuthFailed());
+     }
+    }
+    
+    
+    );
   }
 }

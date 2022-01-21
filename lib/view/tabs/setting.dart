@@ -8,10 +8,15 @@ class SettingTabs extends StatefulWidget {
 }
 
 class _SettingTabsState extends State<SettingTabs> {
+
+
   @override
   Widget build(BuildContext context) {
+        final authBloc = context.read<AuthBloc>();
+              void _logout(){
+  authBloc.add(LoggedOut());
+  }
     return Scaffold(
-
       body: Column(
           children: [
             SizedBox(height: 50,),
@@ -26,6 +31,13 @@ class _SettingTabsState extends State<SettingTabs> {
                   subtitle: Text("solo"),   
                   trailing: Icon(Icons.info),     
                   onTap: () {},         
+                ),
+                Divider(color: Colors.black,),
+                ListTile(
+                  title: Text("Logout"),
+                  trailing: Icon(Icons.logout),     
+                  onTap: _logout
+                           
                 ),
                 Divider(color: Colors.black,),
                 
