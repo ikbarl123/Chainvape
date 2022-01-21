@@ -8,14 +8,13 @@ class ListStore extends StatefulWidget {
 }
 
 class _ListStoreState extends State<ListStore> {
-  List<Vapestore> storeList = [];
   
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          VapestoreBloc(RepositoryProvider.of<StoreService>(context))..add(LoadApiEvent()),
+          VapestoreBloc(StoreService())..add(LoadApiEvent()),
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(8.0),

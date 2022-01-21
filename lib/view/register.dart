@@ -111,7 +111,9 @@ class _RegisterState extends State<Register> {
                           ),
                           child: ElevatedButton(               
                           onPressed: () {
-                            Get.to(() => MainLayout());
+                            Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MainLayout()));
                           },
                           child: Text('Register', style: TextStyle(color: Colors.white),),
                           style: ElevatedButton.styleFrom(
