@@ -58,8 +58,9 @@ class authButton extends StatelessWidget {
           width: 170,
           height: 74,
           child: ElevatedButton(
-                onPressed: () {
-                  Get.to(() =>Register());
+                onPressed: () {Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const Register()));
                 },
                 child: Text('Register',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
@@ -81,7 +82,10 @@ class authButton extends StatelessWidget {
           height: 74,
           child: ElevatedButton(
                     onPressed: () {
-                     Get.to(() =>Login());
+                     Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const Login()),
+  );
                     },
                     child: Text('Login',style: TextStyle(color: Colors.white)),
                     style: ElevatedButton.styleFrom(

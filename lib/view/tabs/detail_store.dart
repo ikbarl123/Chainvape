@@ -26,6 +26,8 @@ Widget build(BuildContext context) {
                 borderRadius: BorderRadius.all(Radius.circular(20))
                 ),
                 child: Column(children: [
+                  Text("Alamat :" ),
+                  Text(store.alamat??'error')
                   
                 ],) ,
               ),

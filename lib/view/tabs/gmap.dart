@@ -15,6 +15,7 @@ class Gmap extends StatefulWidget {
 class _GmapState extends State<Gmap> {
   static const _initialCameraPos= CameraPosition(target: LatLng(-6.921216508417418, 107.60761891310989),zoom: 14);
   late String _mapStyle;
+  Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
 
  @override
 void initState() {
@@ -42,7 +43,9 @@ late GoogleMapController mapController;
             onMapCreated: (GoogleMapController controller) {
             mapController = controller;
             mapController.setMapStyle(_mapStyle);
-            }),
+            },
+           // markers: ,
+           ),
           Padding(
             padding: const EdgeInsets.all(30.20),
             child: Column(
@@ -86,7 +89,7 @@ late GoogleMapController mapController;
         child: Icon(Icons.list,color: Colors.black,),
         onPressed: () {  Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => ListVapeStorePage()),);
+                          MaterialPageRoute(builder: (context) => ListStore()),);
         },
         style: ElevatedButton.styleFrom(
                           primary: Colors.white,

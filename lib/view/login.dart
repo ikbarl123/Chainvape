@@ -91,7 +91,9 @@ class _LoginState extends State<Login> {
                           ),
                           child: ElevatedButton(               
                           onPressed: () {
-                            Get.to(() =>MainLayout());
+                            Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MainLayout()));
                           },
                           child: Text('Login', style: TextStyle(color: Colors.white),),
                           style: ElevatedButton.styleFrom(
