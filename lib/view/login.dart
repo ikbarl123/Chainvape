@@ -17,7 +17,8 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
       void _login(){
-  authBloc.add(LoginProcess(email: _usernameController.text,password:_passwordController.text ));}
+  authBloc.add(LoginProcess(email: _usernameController.text,password:_passwordController.text ));
+  }
 
     return BlocBuilder<AuthBloc, AuthState>(
       bloc: authBloc,
