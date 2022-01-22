@@ -48,7 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     on<RegisterProcess>((event, emit)async{
       emit(AuthLoading());
-     final user = await _authService.doRegister(event.email, event.password,event.password_confirmation);
+     final user = await _authService.doRegister(event.nama,event.email, event.password,event.password_confirmation);
      if(user !="failed"){
        emit(LoginSuccess());
        await _authService.setUser(user);

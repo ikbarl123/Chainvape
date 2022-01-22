@@ -21,16 +21,19 @@ Future doLogin(String _email, String _password) async {
   }
 }
 
-Future doRegister(String _email, String _password,String _conpassword) async {
+Future doRegister(String _nama, String _email, String _password,String _conpassword) async {
   try{
-  final response = await post(Uri.parse(AppUrl.login),
+  final response = await post(Uri.parse(AppUrl.register),
   headers: {'Accept': 'application/json'},
   body: {
+    'name':_nama,
     'email':_email,
     'password':_password,
     'password_confirmation':_conpassword
   });
  var data = jsonDecode(response.body.toString());
+  print(data);
+
   return User.fromJson(data);
   }catch(e){
     return e;

@@ -8,7 +8,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  TextEditingController _usernameController = new TextEditingController();
+  TextEditingController _namaController = new TextEditingController();
+  TextEditingController _emailController = new TextEditingController();
   TextEditingController _passwordconfController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -16,7 +17,7 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
       void _login(){
-  authBloc.add(RegisterProcess(email: _usernameController.text,password:_passwordController.text,password_confirmation: _passwordconfController.text ));}
+  authBloc.add(RegisterProcess(nama:_namaController.text,  email: _emailController.text,password:_passwordController.text,password_confirmation: _passwordconfController.text ));}
 
     return BlocBuilder<AuthBloc, AuthState>(
       bloc: authBloc,
@@ -38,7 +39,7 @@ class _RegisterState extends State<Register> {
                         width: 302,
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 30,
                       ),
                       buildTitle("Login"),
                       Padding(
@@ -47,7 +48,7 @@ class _RegisterState extends State<Register> {
                           children: [
                             Align(
                                 alignment: Alignment.centerLeft,
-                                child: buildText("Username")),
+                                child: buildText("Nama")),
                             Center(
                               child: Container(
                                 width: 343,
@@ -61,7 +62,32 @@ class _RegisterState extends State<Register> {
                                     // to trigger disabledBorder
                                     style: TextStyle(color: Colors.black),
                                     decoration: buildTextfield(""),
-                                    controller: _usernameController,
+                                    controller: _namaController,
+                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                    obscureText: false,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),Align(
+                                alignment: Alignment.centerLeft,
+                                child: buildText("Email")),
+                            Center(
+                              child: Container(
+                                width: 343,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                ),
+                                child: Material(
+                                  type: MaterialType.transparency,
+                                  child: TextFormField(
+                                    // to trigger disabledBorder
+                                    style: TextStyle(color: Colors.black),
+                                    decoration: buildTextfield(""),
+                                    controller: _emailController,
                                     //onChanged: _authenticationFormBloc.onPasswordChanged,
                                     obscureText: false,
                                   ),
@@ -95,8 +121,6 @@ class _RegisterState extends State<Register> {
                               ),
                             ),
                             SizedBox(
-                              height: 10,
-                            ),SizedBox(
                               height: 10,
                             ),
                             Align(
