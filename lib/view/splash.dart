@@ -9,6 +9,8 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     final deviceHeight = MediaQuery.of(context).size.height;
+     final deviceWidth = MediaQuery.of(context).size.width;
     return Container(
           decoration: BoxDecoration(
             image: DecorationImage(
