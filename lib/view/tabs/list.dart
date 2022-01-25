@@ -49,8 +49,7 @@ class _ListStoreState extends State<ListStore> {
                             child: ListTile(
                               title: Text(
                                   state.store[index].namatoko??"error"), //Text(StoreService().storeList[index].namatoko??"Title"),
-                              leading: Text(
-                                  "dummy"), //Image.network(StoreService().storeList[index].imgurl??"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzj3zuwqgcuIdnxN0PaGXlbTNgYadtrKmuMQ&usqp=CAU"),
+                              leading: Image.network(state.store[index].imgurl??"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzj3zuwqgcuIdnxN0PaGXlbTNgYadtrKmuMQ&usqp=CAU"),
                               trailing: IconButton(
                                 icon: Icon(Icons.star),
                                 onPressed: () {},

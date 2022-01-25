@@ -15,3 +15,4 @@ part 'gmap.dart';
 part 'list.dart';
 part 'setting.dart';
 part 'widget_tabs.dart';
+part 'forum.dart';

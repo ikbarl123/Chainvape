@@ -13,7 +13,7 @@ Widget build(BuildContext context) {
           child: Column(
           children: <Widget>[
           SizedBox(height: 80,),
-          Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzj3zuwqgcuIdnxN0PaGXlbTNgYadtrKmuMQ&usqp=CAU", height: 184, width: 241,),
+          Image.network(store.imgurl??"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzj3zuwqgcuIdnxN0PaGXlbTNgYadtrKmuMQ&usqp=CAU", height: 184, width: 241,),
           SizedBox(height: 58,),
           title(store.namatoko??'Nama Toko here'),
           SizedBox(height: 29,),
