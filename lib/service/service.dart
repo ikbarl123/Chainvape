@@ -4,7 +4,6 @@ import 'dart:async';
 
 //package
 import 'package:chainvape/model/user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
