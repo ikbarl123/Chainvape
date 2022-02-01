@@ -23,8 +23,8 @@ class Thread {
     _id = json['id'];
     _catId = json['cat_id'];
     _userId = json['user_id'];
-    _title = json['Title'];
-    _text = json['Text'];
+    _title = json['title'];
+    _text = json['text'];
     _createdAt = json['created_at'];
     _author = json['author'] != null ? Author.fromJson(json['author']) : null;
   }
@@ -49,8 +49,8 @@ class Thread {
     map['id'] = _id;
     map['cat_id'] = _catId;
     map['user_id'] = _userId;
-    map['Title'] = _title;
-    map['Text'] = _text;
+    map['title'] = _title;
+    map['text'] = _text;
     map['created_at'] = _createdAt;
     if (_author != null) {
       map['author'] = _author?.toJson();
