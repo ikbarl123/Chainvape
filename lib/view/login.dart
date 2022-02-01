@@ -49,7 +49,7 @@ class _LoginState extends State<Login> {
                           children: [
                             Align(
                                 alignment: Alignment.centerLeft,
-                                child: buildText("Username")),
+                                child: buildText("Email")),
                             Center(
                               child: Container(
                                 width: 343,

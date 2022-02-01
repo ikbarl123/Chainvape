@@ -18,7 +18,7 @@ class ThreadService {
     }
     }catch(e)
     {
-      throw e;
+      rethrow;
     }
   } 
 
@@ -38,16 +38,22 @@ class ThreadService {
     }
     }catch(e)
     {
-      throw e;
+      rethrow;
     }
   } 
 
   Future CreatePost(int _id, String _title, String _text,) async {
+      Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  
   try{
+    final SharedPreferences local = await _prefs;
+  final String token = local.getString("token")??"kosong";
   final response = await post(Uri.parse(AppUrl.post),
-  headers: {'Accept': 'application/json'},
+  headers: {
+    'Authorization': 'Bearer $token',
+    'Accept': 'application/json'
+    },
   body: {
-    'user_id':_id,
     'title':_title,
     'text':_text,
   });
@@ -61,12 +67,18 @@ class ThreadService {
 }
 
 Future CreateReply(int _postID,int _id, String _text,) async {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  
   try{
-  final response = await post(Uri.parse(AppUrl.post),
-  headers: {'Accept': 'application/json'},
+    final SharedPreferences local = await _prefs;
+  final String token = local.getString("token")??"kosong";
+  final response = await post(Uri.parse(AppUrl.reply),
+  headers: {
+    'Authorization': 'Bearer $token',
+    'Accept': 'application/json'
+    },
   body: {
     'post_id':_postID,
-    'user_id':_id,
     'password':_text,
   });
  var data = jsonDecode(response.body.toString());

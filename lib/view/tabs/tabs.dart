@@ -8,11 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:chainvape/view/widget/widget.dart';
+
 
 
 part 'detail_store.dart';
 part 'gmap.dart';
 part 'list.dart';
-part 'setting.dart';
-part 'widget_tabs.dart';
+part 'setting_tabs.dart';
 part 'forum.dart';
+part 'forum_create.dart';
+part 'forum_view.dart';

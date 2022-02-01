@@ -71,6 +71,7 @@ Future setUser(User user) async{
   final SharedPreferences local = await _prefs;
   String json = userToJson(user);
   local.setString('user', json);
+  local.setString('token', user.token);
 }
 
 Future clearUser() async{

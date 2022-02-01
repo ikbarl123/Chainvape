@@ -26,7 +26,7 @@ final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
 
                 tabs: <Widget>[
                   Tab(child: Icon(Icons.home, color: Colors.black, size: 40,)),
-                  Tab(child: Icon(Icons.bookmark, color: Colors.black,size: 40,)),      
+                  Tab(child: Icon(Icons.map, color: Colors.black,size: 40,)),      
                   Tab(child: Icon(Icons.settings, color: Colors.black,size: 40,)),
                 ],
               ),
@@ -39,8 +39,8 @@ final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
           builder: (_) => TabBarView(
         physics: NeverScrollableScrollPhysics(),
         children: [
+          Forum(),
           Gmap(),
-          ListStore(),
           SettingTabs(),
         ],
       )
