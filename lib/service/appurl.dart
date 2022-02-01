@@ -7,7 +7,7 @@ class AppUrl {
   static const String logout=url+"/api/auth/logout";
   static const String register=url+"/api/auth/register";
   static const String store=url+"/api/vapestore/get";
-  static const String forum=url+"/api/forum/";
+  static const String forum=url+"/api/forum";
   static const String thread=url+"/api/thread/get";
   static const String post=url+"/api/thread/create";
   static const String reply=url+"/api/thread/reply";
