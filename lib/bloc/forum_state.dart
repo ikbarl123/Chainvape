@@ -9,7 +9,13 @@ abstract class ForumState extends Equatable {
 
 class ForumInitial extends ForumState {}
 class ForumLoading extends ForumState {}
-class ForumLoaded extends ForumState {}
+class ForumLoaded extends ForumState {
+    final List<Thread> threads;
+
+  ForumLoaded(this.threads);
+    @override
+  List<Object> get props => [threads];
+}
 
 class PostInitial extends ForumState {}
 class PostLoading extends ForumState {}
