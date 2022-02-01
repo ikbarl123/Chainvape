@@ -2,7 +2,10 @@
 
 import 'package:chainvape/bloc/auth_bloc.dart';
 import 'package:chainvape/bloc/forum_bloc.dart';
+import 'package:chainvape/bloc/replies_bloc.dart';
 import 'package:chainvape/bloc/vapestore_bloc.dart';
+import 'package:chainvape/model/thread.dart';
+import 'package:chainvape/model/user.dart';
 import 'package:chainvape/model/vapestore.dart';
 import 'package:chainvape/service/service.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,6 @@ part 'detail_store.dart';
 part 'gmap.dart';
 part 'list_store_page.dart';
 part 'setting_tabs.dart';
-part 'forum.dart';
+part 'forum_list_page.dart';
 part 'forum_create.dart';
 part 'forum_view.dart';
