@@ -1,6 +1,8 @@
 import 'package:chainvape/bloc/auth_bloc.dart';
+import 'package:chainvape/bloc/forum_bloc.dart';
 import 'package:chainvape/bloc/vapestore_bloc.dart';
 import 'package:chainvape/service/service.dart';
+import 'package:chainvape/view/tabs/tabs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
             BlocProvider<VapestoreBloc>(
               create: (context) => VapestoreBloc(StoreService()),
             ),
+            
           ], child: MaterialApp(
             title: 'Chainvape',
             home: App(),))
