@@ -18,6 +18,9 @@ class ForumLoaded extends ForumState {
   List<Object> get props => [threads,user];
 }
 
+
+
+
 class PostInitial extends ForumState {}
 class PostLoading extends ForumState {}
 class PostLoaded extends ForumState {}

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+
 import 'package:chainvape/model/thread.dart';
 import 'package:chainvape/model/user.dart';
 import 'package:chainvape/service/service.dart';
@@ -16,5 +17,28 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
       final user = await _authService.hasUser(); 
       emit(ForumLoaded(forum,user));
     });
+
+
+    // on<GetPost>((event, emit){
+    //   List<Reply> replies = [];
+    // emit (RepliesLoaded(replies));
+    // emit (RepliesInitial());
+    // });
+
+
+    
+    on<BackForum>((event, emit){
+    emit (ForumInitial());
+    });
+
+    // on<CreatePost>((event, emit) async {
+    //   final thread = await _threadService.createThread(event.thread);
+    //   emit(PostCreated(thread));
+    // });
+
+    // on<CreateReply>((event, emit) async {
+    //   final reply = await _threadService.createReply(event.reply);
+    //   emit(ReplyCreated(reply));
+    // });
   }
 }
