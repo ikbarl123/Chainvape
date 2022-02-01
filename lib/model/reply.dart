@@ -1,34 +1,4 @@
 import 'dart:convert';
-Replies repliesFromJson(String str) => Replies.fromJson(json.decode(str));
-String repliesToJson(Replies data) => json.encode(data.toJson());
-class Replies {
-  Replies({
-      List<Reply>? reply,}){
-    _reply = reply;
-}
-
-  Replies.fromJson(dynamic json) {
-    if (json['reply'] != null) {
-      _reply = [];
-      json['reply'].forEach((v) {
-        _reply?.add(Reply.fromJson(v));
-      });
-    }
-  }
-  List<Reply>? _reply;
-
-  List<Reply>? get reply => _reply;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (_reply != null) {
-      map['reply'] = _reply?.map((v) => v.toJson()).toList();
-    }
-    return map;
-  }
-
-}
-
 Reply replyFromJson(String str) => Reply.fromJson(json.decode(str));
 String replyToJson(Reply data) => json.encode(data.toJson());
 class Reply {
@@ -38,20 +8,26 @@ class Reply {
       int? threadId, 
       String? text, 
       String? createdAt, 
-      Owner? owner,}){
+      Owner? owner})
+      {
     _id = id;
     _userId = userId;
     _threadId = threadId;
     _text = text;
     _createdAt = createdAt;
     _owner = owner;
+    
+    
 }
+
+
+
 
   Reply.fromJson(dynamic json) {
     _id = json['id'];
     _userId = json['user_id'];
     _threadId = json['thread_id'];
-    _text = json['Text'];
+    _text = json['text'];
     _createdAt = json['created_at'];
     _owner = json['owner'] != null ? Owner.fromJson(json['owner']) : null;
   }
@@ -74,14 +50,15 @@ class Reply {
     map['id'] = _id;
     map['user_id'] = _userId;
     map['thread_id'] = _threadId;
-    map['Text'] = _text;
+    map['text'] = _text;
     map['created_at'] = _createdAt;
     if (_owner != null) {
       map['owner'] = _owner?.toJson();
     }
     return map;
   }
-
+ @override
+   List<dynamic> get props => [id, userId, threadId, text, createdAt, owner];
 }
 
 Owner ownerFromJson(String str) => Owner.fromJson(json.decode(str));
