@@ -66,6 +66,8 @@ Future hasUser() async{
   return "kosong";
 }
 
+
+
 Future setUser(User user) async{
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final SharedPreferences local = await _prefs;

@@ -6,7 +6,8 @@ class Forum extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ForumBloc(ThreadService())..add(GetPostList()),
+      create: (context) =>
+          ForumBloc(ThreadService(), AuthService())..add(GetPostList()),
       child: Scaffold(
           backgroundColor: Color.fromRGBO(226, 252, 229, 1),
           body: SingleChildScrollView(
@@ -33,7 +34,19 @@ class Forum extends StatelessWidget {
                           Icons.portrait_rounded,
                           color: Colors.black,
                         ),
-                        title: Text('hai user'),
+                        title: BlocBuilder<ForumBloc, ForumState>(
+                          builder: (context, state) {
+               if (state is VapestoreInitial) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                          ),
+                        );
+                      } else if (state is ForumLoaded) {
+                        return Text("Hai "+state.user.user.name);
+                      } return Container();
+                          },
+                        ),
                         trailing: IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
@@ -47,73 +60,91 @@ class Forum extends StatelessWidget {
                   ),
                   BlocBuilder<ForumBloc, ForumState>(
                     builder: (context, state) {
-                     if (state is VapestoreInitial){
-                      return Center(child: CircularProgressIndicator(strokeWidth: 5,),);
-                    }else if (state is ForumLoaded){
-                      print(state.threads.length);
-                      //return listview.builder(state.threads);
-                      return ListView.builder(
-                        padding: const EdgeInsets.only(bottom: 100),
-                        itemCount: state.threads.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return  Column(
-                            children: [
-                              InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ThreadView()));
-                    },
-                    child: Container(
-                      height: 300,
-                      width: 600,
-                      decoration: ShapeDecoration(
-                              color: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)))),
-                      child: Center(
-                        child: Column(
+                      if (state is VapestoreInitial) {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                          ),
+                        );
+                      } else if (state is ForumLoaded) {
+                        print(state.threads.length);
+                        //return listview.builder(state.threads);
+                        return ListView.builder(
+                          padding: const EdgeInsets.only(bottom: 100),
+                          itemCount: state.threads.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            DateTime parseDt = DateTime.parse(
+                                state.threads[index].createdAt ??
+                                    "2022-01-25 05:16:23");
+                            return Column(
                               children: [
-                                ListTile(
-                                  title: Text(state.threads[index].title??"kosong"),
-                                  subtitle: Text(state.threads[index].author?.name??'kosong'),
-                                  leading: Text(state.threads[index].createdAt??"test"),
-                                ),
-                                Divider(
-                                  height: 1,
-                                  color: Colors.black,
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ThreadView()));
+                                  },
+                                  child: Container(
+                                    height: 300,
+                                    width: 600,
+                                    decoration: ShapeDecoration(
+                                        color: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(20)))),
+                                    child: Center(
+                                      child: Column(
+                                        children: [
+                                          ListTile(
+                                            title: Text(
+                                                state.threads[index].title ??
+                                                    "kosong"),
+                                            subtitle: Text("By " +
+                                                (state.threads[index].author
+                                                        ?.name ??
+                                                    'kosong')),
+                                            trailing: Text(
+                                                parseDt.day.toString() +
+                                                    "-" +
+                                                    parseDt.month.toString() +
+                                                    "-" +
+                                                    parseDt.year.toString()),
+                                          ),
+                                          Divider(
+                                            height: 1,
+                                            color: Colors.black,
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Expanded(
+                                              child: Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Align(
+                                              alignment: Alignment.topLeft,
+                                              child: Text(
+                                                  state.threads[index].text ??
+                                                      "kosong"),
+                                            ),
+                                          ))
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
                                 SizedBox(
-                                  height: 5,
+                                  height: 40,
                                 ),
-                                Expanded(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(20.0),
-                                  child: Align(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                        state.threads[index].text??"kosong"),
-                                  ),
-                                ))
                               ],
-                        ),
-                      ),
-                    ),
-                  ),  SizedBox(
-                    height: 40,
-                  ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                    return Container();
+                            );
+                          },
+                        );
+                      }
+                      return Container();
                     },
                   ),
-                 
-
-                
                 ],
               ),
             ),

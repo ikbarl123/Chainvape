@@ -11,10 +11,11 @@ class ForumInitial extends ForumState {}
 class ForumLoading extends ForumState {}
 class ForumLoaded extends ForumState {
     final List<Thread> threads;
+    final User user;
 
-  ForumLoaded(this.threads);
+  ForumLoaded(this.threads,this.user);
     @override
-  List<Object> get props => [threads];
+  List<Object> get props => [threads,user];
 }
 
 class PostInitial extends ForumState {}
