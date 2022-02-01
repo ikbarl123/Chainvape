@@ -2,8 +2,10 @@ part of 'service.dart';
 
 class ThreadService {
 
-  List<Thread> threadList = [];
+
   Future<List<Thread>> getThreadList() async{
+      List<Thread> threadList = [];
+    threadList.clear();
     try{
     final response = await get(Uri.parse(AppUrl.forum));
     var data = jsonDecode(response.body.toString());
@@ -22,15 +24,17 @@ class ThreadService {
     }
   } 
 
-  List<Replies> repliesList = [];
-  Future<List<Replies>> getReplies() async{
+
+
+  List<Reply> repliesList = [];
+  Future<List<Reply>> getReplies(int id) async{
     try{
-    final response = await post(Uri.parse(AppUrl.thread));
+    final response = await get(Uri.parse(AppUrl.thread+"$id"));
     var data = jsonDecode(response.body.toString());
     if(response.statusCode==200){
       for(Map i in data){
         print(response.body);
-        repliesList.add(Replies.fromJson(i));
+        repliesList.add(Reply.fromJson(i));
       }
       return repliesList;  
     }else{
@@ -40,7 +44,7 @@ class ThreadService {
     {
       rethrow;
     }
-  } 
+  }
 
   Future CreatePost(int _id, String _title, String _text,) async {
       Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
