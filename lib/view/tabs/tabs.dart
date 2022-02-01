@@ -1,6 +1,7 @@
 
 
 import 'package:chainvape/bloc/auth_bloc.dart';
+import 'package:chainvape/bloc/forum_bloc.dart';
 import 'package:chainvape/bloc/vapestore_bloc.dart';
 import 'package:chainvape/model/vapestore.dart';
 import 'package:chainvape/service/service.dart';
@@ -14,7 +15,7 @@ import 'package:chainvape/view/widget/widget.dart';
 
 part 'detail_store.dart';
 part 'gmap.dart';
-part 'list.dart';
+part 'list_store_page.dart';
 part 'setting_tabs.dart';
 part 'forum.dart';
 part 'forum_create.dart';
