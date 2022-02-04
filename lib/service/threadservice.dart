@@ -2,8 +2,10 @@ part of 'service.dart';
 
 class ThreadService {
 
-  List<Thread> threadList = [];
+
   Future<List<Thread>> getThreadList() async{
+      List<Thread> threadList = [];
+    threadList.clear();
     try{
     final response = await get(Uri.parse(AppUrl.forum));
     var data = jsonDecode(response.body.toString());
@@ -18,19 +20,22 @@ class ThreadService {
     }
     }catch(e)
     {
-      throw e;
+      rethrow;
     }
   } 
 
-  List<Replies> repliesList = [];
-  Future<List<Replies>> getReplies() async{
+
+
+  List<Reply> repliesList = [];
+  Future<List<Reply>> getReplies(int id) async{
     try{
-    final response = await post(Uri.parse(AppUrl.thread));
-    var data = jsonDecode(response.body.toString());
+    final response = await get(Uri.parse(AppUrl.thread+"$id"));
+    
     if(response.statusCode==200){
+      var data = jsonDecode(response.body.toString());
       for(Map i in data){
         print(response.body);
-        repliesList.add(Replies.fromJson(i));
+        repliesList.add(Reply.fromJson(i));
       }
       return repliesList;  
     }else{
@@ -38,43 +43,68 @@ class ThreadService {
     }
     }catch(e)
     {
-      throw e;
+      rethrow;
     }
-  } 
+  }
 
-  Future CreatePost(int _id, String _title, String _text,) async {
+  Future CreatePost(String _title, String _text,) async {
+      Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  
   try{
+    final SharedPreferences local = await _prefs;
+  final String token = local.getString("token")??"kosong";
   final response = await post(Uri.parse(AppUrl.post),
-  headers: {'Accept': 'application/json'},
+  headers: {
+    'Authorization': 'Bearer ${token.toString()}',
+    'Accept': 'application/json'
+    },
   body: {
-    'user_id':_id,
     'title':_title,
     'text':_text,
   });
- var data = jsonDecode(response.body.toString());
-  print(data);
 
-  //return User.fromJson(data);
+  var data = jsonDecode(response.body.toString());
+     print(response.statusCode);
+  if(response.statusCode==201){
+    print(data);
+      var thread = Thread.fromJson(data[0]);
+      return thread;
+   }else 
+   return {"Unkown error"};
+
   }catch(e){
-    return e;
-  }
-}
+    print(e);
+    }
+    }
 
-Future CreateReply(int _postID,int _id, String _text,) async {
+Future CreateReply(int _postID, String _text,) async {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  List<Reply> replies =[];
   try{
-  final response = await post(Uri.parse(AppUrl.post),
-  headers: {'Accept': 'application/json'},
+    final SharedPreferences local = await _prefs;
+  final String token = local.getString("token")??"kosong";
+  final response = await post(Uri.parse(AppUrl.reply),
+  headers: {
+    'Authorization': 'Bearer ${token.toString()}',
+    'Accept': 'application/json'
+    },
   body: {
-    'post_id':_postID,
-    'user_id':_id,
-    'password':_text,
+    'post_id':_postID.toString(),
+    'text':_text,
   });
- var data = jsonDecode(response.body.toString());
-  print(data);
+     var data = jsonDecode(response.body.toString());
+     print(response.statusCode);
+ if(response.statusCode==201){
+   dynamic json = jsonDecode(response.body.toString());
+      var reply = Reply.fromJson(json[0]);
+      print(reply);
+      replies.add(reply);
+      return replies;
+   }else 
+   return {"Unkown error"};
 
- // return User.fromJson(data);
   }catch(e){
-    return e;
-  }
-}
-}
+    print(e);
+    throw e;}
+    }
+    }

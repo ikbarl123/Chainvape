@@ -16,19 +16,24 @@ class _ListStoreState extends State<ListStore> {
       create: (context) =>
           VapestoreBloc(StoreService())..add(LoadApiEvent()),
       child: Scaffold(
+        appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: Text(
+          'Vapestore',
+          style: TextStyle(color: Colors.black),
+        ),
+      ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               SizedBox(
                 height: 50,
-              ),
-              Text("List"),
-              SizedBox(
-                height: 10,
-              ),
-              Divider(
-                color: Colors.black,
               ),
               // SizedBox(height: 10,),
               Expanded(
@@ -50,10 +55,10 @@ class _ListStoreState extends State<ListStore> {
                               title: Text(
                                   state.store[index].namatoko??"error"), //Text(StoreService().storeList[index].namatoko??"Title"),
                               leading: Image.network(state.store[index].imgurl??"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzj3zuwqgcuIdnxN0PaGXlbTNgYadtrKmuMQ&usqp=CAU"),
-                              trailing: IconButton(
-                                icon: Icon(Icons.star),
-                                onPressed: () {},
-                              ),
+                              // trailing: IconButton(
+                              //   icon: Icon(Icons.star),
+                              //   onPressed: () {},
+                              // ),
                               onTap: () {
                                 Navigator.push(
                                     context,

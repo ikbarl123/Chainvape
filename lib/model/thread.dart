@@ -12,7 +12,7 @@ class Thread {
       Author? author,}){
     _id = id;
     _catId = catId;
-    _userId = userId;
+   // _userId = userId;
     _title = title;
     _text = text;
     _createdAt = createdAt;
@@ -22,15 +22,15 @@ class Thread {
   Thread.fromJson(dynamic json) {
     _id = json['id'];
     _catId = json['cat_id'];
-    _userId = json['user_id'];
-    _title = json['Title'];
-    _text = json['Text'];
+   // _userId = int.tryParse(json['user_id']);
+    _title = json['title'];
+    _text = json['text'];
     _createdAt = json['created_at'];
     _author = json['author'] != null ? Author.fromJson(json['author']) : null;
   }
   int? _id;
   int? _catId;
-  int? _userId;
+  //int? _userId;
   String? _title;
   String? _text;
   String? _createdAt;
@@ -38,7 +38,7 @@ class Thread {
 
   int? get id => _id;
   int? get catId => _catId;
-  int? get userId => _userId;
+  //int? get userId => _userId;
   String? get title => _title;
   String? get text => _text;
   String? get createdAt => _createdAt;
@@ -48,9 +48,9 @@ class Thread {
     final map = <String, dynamic>{};
     map['id'] = _id;
     map['cat_id'] = _catId;
-    map['user_id'] = _userId;
-    map['Title'] = _title;
-    map['Text'] = _text;
+    //map['user_id'] = _userId;
+    map['title'] = _title;
+    map['text'] = _text;
     map['created_at'] = _createdAt;
     if (_author != null) {
       map['author'] = _author?.toJson();

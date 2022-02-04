@@ -8,8 +8,8 @@ import 'dart:convert';
 /// alamat : "1"
 /// imgurl : "1"
 
-Vapestore VapestoreFromJson(String str) => Vapestore.fromJson(json.decode(str));
-String VapestoreToJson(Vapestore data) => json.encode(data.toJson());
+Vapestore vapestoreFromJson(String str) => Vapestore.fromJson(json.decode(str));
+String vapestoreToJson(Vapestore data) => json.encode(data.toJson());
 class Vapestore {
   Vapestore({
       int? idStore, 
@@ -28,8 +28,8 @@ class Vapestore {
 
   Vapestore.fromJson(dynamic json) {
     _idStore = json['id_store'];
-    _lat = json['lat'];
-    _lng = json['lng'];
+    _lat = double.tryParse(json['lat']);
+    _lng = double.tryParse(json['lng']);
     _namatoko = json['namatoko'];
     _alamat = json['alamat'];
     _imgurl = json['imgurl'];

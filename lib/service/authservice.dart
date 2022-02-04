@@ -12,11 +12,16 @@ Future doLogin(String _email, String _password) async {
     'password': _password
   });
  var data = jsonDecode(response.body.toString());
- print(data);
-  return User.fromJson(data);
+
+if(response.statusCode==401){
+     return data['message'];
+   } else 
+   if(response.statusCode==201){
+    return User.fromJson(data);
+   } return "Unkown error";
+
 
   }catch(e){
-    print(e);
     return e;
   }
 }
@@ -32,9 +37,15 @@ Future doRegister(String _nama, String _email, String _password,String _conpassw
     'password_confirmation':_conpassword
   });
  var data = jsonDecode(response.body.toString());
-  print(data);
 
-  return User.fromJson(data);
+if(response.statusCode==401){
+     return data['message'];
+   } else 
+   if(response.statusCode==201){
+    return User.fromJson(data);
+   } return "Unkown error";
+
+
   }catch(e){
     return e;
   }
@@ -59,18 +70,20 @@ Future hasUser() async{
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final SharedPreferences local = await _prefs;
   final String user = local.getString("user")??"kosong";
-  print(user);
    if(user!="kosong"){
      return User.fromJson(jsonDecode(user));
    }
   return "kosong";
 }
 
+
+
 Future setUser(User user) async{
   Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final SharedPreferences local = await _prefs;
   String json = userToJson(user);
   local.setString('user', json);
+  local.setString('token', user.token);
 }
 
 Future clearUser() async{

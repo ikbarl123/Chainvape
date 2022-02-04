@@ -6,9 +6,17 @@ abstract class ForumEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
-
+class BackForum extends ForumEvent{}
 class GetPostList extends ForumEvent{}
 class GetPost extends ForumEvent{}
 
-class CreatePost extends ForumEvent{}
-class CreateReply extends ForumEvent{}
+class WritePost extends ForumEvent{}
+
+class CreatePost extends ForumEvent{
+  String title;
+  String post;
+  CreatePost({required this.title,required this.post});
+  @override
+  List<Object> get props => [title,post];
+}
+

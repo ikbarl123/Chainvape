@@ -16,125 +16,141 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
-      void _login(){
-  authBloc.add(LoginProcess(email: _usernameController.text,password:_passwordController.text ));
-  }
+    void _login() {
+      authBloc.add(LoginProcess(
+          email: _usernameController.text, password: _passwordController.text));
+    }
 
-    return BlocBuilder<AuthBloc, AuthState>(
-      bloc: authBloc,
-      builder: (context, state) {
-        return Form(
-          child: Container(
-              key: _formKey,
-              decoration: BuildBG(),
-              child: Stack(children: [
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 52,
-                      ),
-                      Image.asset(
-                        'assets/images/Chainvapelogos_transparent21.png',
-                        height: 69,
-                        width: 302,
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      buildTitle("Login"),
-                      Padding(
-                        padding: const EdgeInsets.all(50.0),
-                        child: Column(
+    return Scaffold(
+      resizeToAvoidBottomInset: false, 
+      body: BlocListener<AuthBloc, AuthState>(
+        bloc: authBloc,
+        listener: (context, state) {
+           if (state is LoginFailed) {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                duration: Duration(seconds: 5),
+                backgroundColor: Colors.red,
+                content: Text(state.error),
+              ),
+            );
+          }
+        },
+        child: BlocBuilder<AuthBloc, AuthState>(
+          bloc: authBloc,
+          builder: (context, state) {
+            return Form(
+              child: Container(
+                  key: _formKey,
+                  decoration: BuildBG(),
+                  child: Center(
+                    child: Stack(children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: buildText("Username")),
-                            Center(
-                              child: Container(
-                                width: 343,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                ),
-                                child: Material(
-                                  type: MaterialType.transparency,
-                                  child: TextFormField(
-                                    // to trigger disabledBorder
-                                    style: TextStyle(color: Colors.black),
-                                    decoration: buildTextfield(""),
-                                    controller: _usernameController,
-                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                    obscureText: false,
-                                  ),
-                                ),
-                              ),
+                            SizedBox(
+                              height: 52,
+                            ),
+                            Image.asset(
+                              'assets/images/Chainvapelogos_transparent21.png',
+                              height: 69,
+                              width: 302,
                             ),
                             SizedBox(
-                              height: 10,
+                              height: 50,
                             ),
-                            Align(
-                                alignment: Alignment.centerLeft,
-                                child: buildText("Password")),
-                            Center(
-                              child: Container(
-                                width: 343,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                ),
-                                child: Material(
-                                  type: MaterialType.transparency,
-                                  child: TextFormField(
-                                    // to trigger disabledBorder
-                                    style: TextStyle(color: Colors.black),
-                                    decoration: buildTextfield(""),
-                                    controller: _passwordController,
-                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                    obscureText: true,
+                            buildTitle("Login"),
+                            Padding(
+                              padding: const EdgeInsets.all(50.0),
+                              child: Column(
+                                children: [
+                                  Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: buildText("Email")),
+                                  Center(
+                                    child: Container(
+                                      width: 343,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Material(
+                                        type: MaterialType.transparency,
+                                        child: TextFormField(
+                                          // to trigger disabledBorder
+                                          style: TextStyle(color: Colors.black),
+                                          decoration: buildTextfield(""),
+                                          controller: _usernameController,
+                                          //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                          obscureText: false,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: buildText("Password")),
+                                  Center(
+                                    child: Container(
+                                      width: 343,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.transparent,
+                                      ),
+                                      child: Material(
+                                        type: MaterialType.transparency,
+                                        child: TextFormField(
+                                          // to trigger disabledBorder
+                                          style: TextStyle(color: Colors.black),
+                                          decoration: buildTextfield(""),
+                                          controller: _passwordController,
+                                          //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                          obscureText: true,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Container(
+                                        width: 142,
+                                        height: 52,
+                                        decoration: BoxDecoration(
+                                          color: Colors.transparent,
+                                        ),
+                                        child: ElevatedButton(
+                                          onPressed: _login,
+                                          child: (state is AuthLoading)
+                                              ? CircularProgressIndicator()
+                                              : Text(
+                                                  'Login',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Color.fromRGBO(30, 81, 40, 1),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(22)),
+                                          ),
+                                        )),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Align(
-                              alignment: Alignment.centerRight,
-                              child: Container(
-                                  width: 142,
-                                  height: 52,
-                                  decoration: BoxDecoration(
-                                    color: Colors.transparent,
-                                  ),
-                                  child: ElevatedButton(
-                                    onPressed: _login,
-                                    child: (state is AuthLoading)?CircularProgressIndicator():Text(
-                                      'Login',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    
-                                    
-                                    style: ElevatedButton.styleFrom(
-                                      primary: Color.fromRGBO(30, 81, 40, 1),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(22)),
-                                    ),
-                                  )),
-                            ),
-                          ],
-                        ),
-                      ),
+                          ]),
                     ]),
-              ])),
-        );
-      },
+                  )),
+            );
+          },
+        ),
+      ),
     );
-    
   }
- 
-  
 }
-
-
