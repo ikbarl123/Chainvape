@@ -36,10 +36,7 @@ final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
             ),
           ),
 
-      body: Navigator(
-        key: _navKey,
-        onGenerateRoute: (_) => MaterialPageRoute(
-          builder: (_) => TabBarView(
+      body: TabBarView(
         physics: NeverScrollableScrollPhysics(),
         children: [
           Forum(),
@@ -47,7 +44,7 @@ final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
           SettingTabs(),
         ],
       )
-      )))
+      )
       );
   }
 }
