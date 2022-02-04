@@ -28,8 +28,8 @@ class Vapestore {
 
   Vapestore.fromJson(dynamic json) {
     _idStore = json['id_store'];
-    _lat = json['lat'];
-    _lng = json['lng'];
+    _lat = double.tryParse(json['lat']);
+    _lng = double.tryParse(json['lng']);
     _namatoko = json['namatoko'];
     _alamat = json['alamat'];
     _imgurl = json['imgurl'];
