@@ -21,5 +21,19 @@ class AuthHasData extends AuthState{
 class AuthFailed extends AuthState{}
 class LoginInit extends AuthState{}
 class LoginSuccess extends AuthState{}
-class LoginFailed extends AuthState{}
+class LoginFailed extends AuthState{
+  final String error;
+  LoginFailed({required this.error});
+  @override
+  List<Object> get props => [error];
+}
 
+class RegisterInit extends AuthState{}
+class RegisterSuccess extends AuthState{}
+class RegisterFailed extends AuthState{
+  final String error;
+  RegisterFailed({required this.error});
+  @override
+  List<Object> get props => [error];
+  
+}
