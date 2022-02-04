@@ -10,7 +10,7 @@ import 'package:chainvape/view/view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitDown]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     MyApp()
   );
@@ -31,9 +31,6 @@ class MyApp extends StatelessWidget {
           child: MultiBlocProvider(providers: [
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(AuthService()),
-            ),
-            BlocProvider<VapestoreBloc>(
-              create: (context) => VapestoreBloc(StoreService()),
             ),
             
           ], child: MaterialApp(
@@ -62,7 +59,6 @@ class App extends StatelessWidget {
       },
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          print(state);
           if (state is AuthInit) {
             context.read<AuthBloc>().add(AppCheck());
             return Center(
