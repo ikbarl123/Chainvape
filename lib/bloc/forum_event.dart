@@ -10,6 +10,7 @@ class BackForum extends ForumEvent{}
 class GetPostList extends ForumEvent{}
 class GetPost extends ForumEvent{}
 
+class WritePost extends ForumEvent{}
 
 class CreatePost extends ForumEvent{
   String title;

@@ -27,14 +27,16 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
 
 
     
-    on<BackForum>((event, emit){
-    emit (ForumInitial());
+    on<WritePost>((event, emit){
+    emit (CreatePage());
     });
 
-    // on<CreatePost>((event, emit) async {
-    //   final thread = await _threadService.createThread(event.thread);
-    //   emit(PostCreated(thread));
-    // });
+
+
+     on<CreatePost>((event, emit) async {
+       final thread = await _threadService.CreatePost(event.title, event.post);
+       emit(PostCreated(thread));
+     });
 
     // on<CreateReply>((event, emit) async {
     //   final reply = await _threadService.createReply(event.reply);
