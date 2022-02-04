@@ -13,9 +13,10 @@ class GetPostReplies extends RepliesEvent{
   List<Object> get props => [id];
 }
 
+
 class CreateReply extends RepliesEvent{
 
-  String postId;
+  int postId;
   String reply;
   CreateReply({required this.postId,required this.reply});
   @override

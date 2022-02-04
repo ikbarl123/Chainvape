@@ -4,14 +4,14 @@ String replyToJson(Reply data) => json.encode(data.toJson());
 class Reply {
   Reply({
       int? id, 
-      int? userId, 
+    //  int? userId, 
       int? threadId, 
       String? text, 
       String? createdAt, 
       Owner? owner})
       {
     _id = id;
-    _userId = userId;
+  //  _userId = userId;
     _threadId = threadId;
     _text = text;
     _createdAt = createdAt;
@@ -25,21 +25,21 @@ class Reply {
 
   Reply.fromJson(dynamic json) {
     _id = json['id'];
-    _userId = json['user_id'];
-    _threadId = json['thread_id'];
-    _text = json['text'];
-    _createdAt = json['created_at'];
+    //_userId = int.tryParse(json['user_id']);
+    _threadId = int.tryParse(json['thread_id']);
+    _text = json['text'] as String;
+    _createdAt = json['created_at']as String;
     _owner = json['owner'] != null ? Owner.fromJson(json['owner']) : null;
   }
   int? _id;
-  int? _userId;
+  //int? _userId;
   int? _threadId;
   String? _text;
   String? _createdAt;
   Owner? _owner;
 
   int? get id => _id;
-  int? get userId => _userId;
+ // int? get userId => _userId;
   int? get threadId => _threadId;
   String? get text => _text;
   String? get createdAt => _createdAt;
@@ -48,7 +48,7 @@ class Reply {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['user_id'] = _userId;
+   // map['user_id'] = _userId;
     map['thread_id'] = _threadId;
     map['text'] = _text;
     map['created_at'] = _createdAt;
@@ -58,7 +58,7 @@ class Reply {
     return map;
   }
  @override
-   List<dynamic> get props => [id, userId, threadId, text, createdAt, owner];
+   List<dynamic> get props => [id, threadId, text, createdAt, owner];
 }
 
 Owner ownerFromJson(String str) => Owner.fromJson(json.decode(str));
@@ -73,7 +73,7 @@ class Owner {
 
   Owner.fromJson(dynamic json) {
     _id = json['id'];
-    _name = json['name'];
+    _name = json['name'].toString();
   }
   int? _id;
   String? _name;
@@ -84,7 +84,7 @@ class Owner {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['name'] = _name;
+    map['name'] = _name as String;
     return map;
   }
 

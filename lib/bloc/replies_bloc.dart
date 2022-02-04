@@ -17,11 +17,17 @@ class RepliesBloc extends Bloc<RepliesEvent, RepliesState> {
       var replies = reply;
       replies.clear();
       replies.addAll(await _threadService.getReplies(event.id));
+      
       if (replies.isEmpty) {
         emit(ForumRepliesEmpty());
       }
-      print(replies);
       emit(RepliesLoaded(replies));
+    });
+
+    on<CreateReply>((event, emit) async {
+      var reply = await _threadService.CreateReply(event.postId,event.reply);     
+
+      
     });
 
   }
