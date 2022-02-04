@@ -24,3 +24,12 @@ class ForumLoaded extends ForumState {
 class PostInitial extends ForumState {}
 class PostLoading extends ForumState {}
 class PostLoaded extends ForumState {}
+class PostCreated extends ForumState {
+  final Thread thread;
+
+  PostCreated(this.thread);
+  @override
+  List<Object> get props => [thread];
+}
+
+class CreatePage extends ForumState {}
