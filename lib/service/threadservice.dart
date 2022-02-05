@@ -10,8 +10,7 @@ class ThreadService {
     final response = await get(Uri.parse(AppUrl.forum));
     var data = jsonDecode(response.body.toString());
     if(response.statusCode==200){
-      for(Map i in data){
-        print(response.body);
+      for(Map i in data){;
         threadList.add(Thread.fromJson(i));
       }
       return threadList;  
@@ -34,7 +33,6 @@ class ThreadService {
     if(response.statusCode==200){
       var data = jsonDecode(response.body.toString());
       for(Map i in data){
-        print(response.body);
         repliesList.add(Reply.fromJson(i));
       }
       return repliesList;  
@@ -64,9 +62,8 @@ class ThreadService {
   });
 
   var data = jsonDecode(response.body.toString());
-     print(response.statusCode);
   if(response.statusCode==201){
-    print(data);
+
       var thread = Thread.fromJson(data[0]);
       return thread;
    }else 
@@ -93,18 +90,17 @@ Future CreateReply(int _postID, String _text,) async {
     'text':_text,
   });
      var data = jsonDecode(response.body.toString());
-     print(response.statusCode);
+
  if(response.statusCode==201){
    dynamic json = jsonDecode(response.body.toString());
       var reply = Reply.fromJson(json[0]);
-      print(reply);
+
       replies.add(reply);
       return replies;
    }else 
    return {"Unkown error"};
 
   }catch(e){
-    print(e);
-    throw e;}
+    print(e);}
     }
     }
