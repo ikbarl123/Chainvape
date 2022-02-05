@@ -84,7 +84,7 @@ class _ForumState extends State<ForumPage> {
                         ),
                       );
                     } else if (state is ForumLoaded) {
-                      print(state.threads.length);
+
                       //return listview.builder(state.threads);
                       return ListView.builder(
                         padding: const EdgeInsets.only(bottom: 100),

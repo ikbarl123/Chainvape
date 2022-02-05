@@ -42,7 +42,6 @@ class _ListStoreState extends State<ListStore> {
                     if (state is VapestoreInitial){
                       return Center(child: CircularProgressIndicator(strokeWidth: 5,),);
                     }else if (state is VapestoreLoaded){
-                      print(state.store.length);
                       return ListView.builder(
                         shrinkWrap: true,
                         itemCount: state.store.length,
