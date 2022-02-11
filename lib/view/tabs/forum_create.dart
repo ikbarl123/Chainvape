@@ -31,7 +31,10 @@ class _CreateThreadState extends State<CreateThreadPage> {
           elevation: 0,
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () => {},
+            onPressed: () => {
+              //pop
+              Navigator.pop(context)
+            },
           ),
           title: Text(
             'Create Thread',
@@ -47,21 +50,6 @@ class _CreateThreadState extends State<CreateThreadPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                    height: 50,
-                    width: 600,
-                    decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20)))),
-                    child: ListTile(
-                      leading: Icon(Icons.verified_user),
-                      title: Text('hai user'),
-                    )),
-                SizedBox(
-                  height: 40,
-                ),
                 Align(
                     alignment: Alignment.centerLeft,
                     child: buildText("Title")),
@@ -71,19 +59,18 @@ class _CreateThreadState extends State<CreateThreadPage> {
                 Center(
                   child: Container(
                     width: 343,
-                    height: 50,
+                    height:60,
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                     ),
                     child: Material(
                       type: MaterialType.transparency,
                       child: TextFormField(
-                        maxLines: 2,
+                        maxLines: 3,
                         // to trigger disabledBorder
                         style: TextStyle(color: Colors.black),
                         decoration: buildTextfield(""),
                         controller: _titleController,
-                        //onChanged: _authenticationFormBloc.onPasswordChanged,
                         obscureText: false,
                       ),
                     ),
@@ -131,12 +118,9 @@ class _CreateThreadState extends State<CreateThreadPage> {
                               title: _titleController.text,
                               post: _textController.text));
                           //pop navigator
-  
-                          //push to home
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Forum()));
+                          forumBloc.add(GetPostList()); 
+                          //pop navigator
+                          Navigator.pop(context);
                           
                         },
                         child: Text(
