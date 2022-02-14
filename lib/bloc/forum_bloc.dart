@@ -13,6 +13,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
    final AuthService _authService;
   ForumBloc(this._threadService,this._authService) : super(ForumInitial()) {
     on<GetPostList>((event, emit) async {
+      emit(ForumLoading());
       final forum = await _threadService.getThreadList();
       final user = await _authService.hasUser(); 
       emit(ForumLoaded(forum,user));

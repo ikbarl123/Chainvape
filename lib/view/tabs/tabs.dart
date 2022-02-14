@@ -16,6 +16,7 @@ import 'package:chainvape/view/widget/widget.dart';
 
 
 
+
 part 'detail_store.dart';
 part 'gmap.dart';
 part 'list_store_page.dart';

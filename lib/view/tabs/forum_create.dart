@@ -1,28 +1,16 @@
 part of 'tabs.dart';
 
-class CreateThread extends StatelessWidget {
+
+class CreateThread extends StatefulWidget {
   const CreateThread({ Key? key }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) =>
-            ForumBloc(ThreadService(), AuthService())..add(GetPostList()),
-        child: CreateThreadPage());
-  }
-}
-
-class CreateThreadPage extends StatefulWidget {
-  const CreateThreadPage({Key? key}) : super(key: key);
 
   @override
   _CreateThreadState createState() => _CreateThreadState();
 }
 
-class _CreateThreadState extends State<CreateThreadPage> {
-  @override
-  Widget build(BuildContext context) {
-    final forumBloc = context.read<ForumBloc>();
+class _CreateThreadState extends State<CreateThread> {
+Widget build(BuildContext context) {
+    final forumBloc = BlocProvider.of<ForumBloc>(context);
     TextEditingController _titleController = new TextEditingController();
     TextEditingController _textController = new TextEditingController();
     return Scaffold(
@@ -118,9 +106,8 @@ class _CreateThreadState extends State<CreateThreadPage> {
                               title: _titleController.text,
                               post: _textController.text));
                           //pop navigator
-                          forumBloc.add(GetPostList()); 
-                          //pop navigator
                           Navigator.pop(context);
+                          //forumBloc.add(GetPostList()); 
                           
                         },
                         child: Text(
