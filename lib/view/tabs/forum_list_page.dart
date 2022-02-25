@@ -90,6 +90,7 @@ class _ForumState extends State<ForumPage> {
                       return ListView.builder(
                         padding: const EdgeInsets.only(bottom: 100),
                         itemCount: state.threads.length,
+                        physics: ScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           DateTime parseDt = DateTime.parse(

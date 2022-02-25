@@ -4,14 +4,10 @@ InputDecoration buildTextfield(String HintText)
 {
   return InputDecoration(                  
                           filled: true,
-                          fillColor: Color(0xFFF2F2F2),
-                          enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(8)),
-                                borderSide: BorderSide(width: 2,color: Colors.black),
-                          ),
+                          fillColor: Colors.white,
                           hintText: HintText,
-                          hintStyle: TextStyle(fontSize: 16,color: Color(0xFFB3B1B1)),
-                          //errorText: snapshot.error,
+                          hintStyle: TextStyle(fontSize: 16,color: Color.fromARGB(255, 43, 36, 36)),
+                          errorStyle: TextStyle(fontSize: 12.0,fontWeight: FontWeight.bold),
                       );
   
  }

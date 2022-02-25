@@ -74,19 +74,12 @@ Widget build(BuildContext context) {
                   height: 20,
                 ),
                 Center(
-                  child: Container(
-                    width: 343,
-                    height: 400,
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: TextField(
-                      maxLines: 20,
-                      style: TextStyle(color: Colors.black),
-                      decoration: buildTextfield(""),
-                      controller: _textController,
-                      obscureText: false,
-                    ),
+                  child: TextField(
+                    maxLines: 20,
+                    style: TextStyle(color: Colors.black),
+                    decoration: buildTextfield(""),
+                    controller: _textController,
+                    obscureText: false,
                   ),
                 ),
                 SizedBox(
