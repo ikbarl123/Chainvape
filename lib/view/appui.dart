@@ -40,7 +40,7 @@ final GlobalKey<NavigatorState> _navKey = GlobalKey<NavigatorState>();
         physics: NeverScrollableScrollPhysics(),
         children: [
           Forum(),
-          Gmap(),
+          ListStore(),
           SettingTabs(),
         ],
       )

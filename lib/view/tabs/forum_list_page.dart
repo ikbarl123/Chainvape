@@ -7,7 +7,7 @@ class Forum extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
         create: (context) =>
-            ForumBloc(ThreadService(), AuthService())..add(GetPostList()),
+            ForumBloc(ThreadService(), AuthService()),
         child: ForumPage());
   }
 }
@@ -22,7 +22,7 @@ class ForumPage extends StatefulWidget {
 class _ForumState extends State<ForumPage> {
   @override
   Widget build(BuildContext context) {
-    final forumBloc = BlocProvider.of<ForumBloc>(context);
+    final forumBloc = BlocProvider.of<ForumBloc>(context)..add(GetPostList()); ;
     return Scaffold(
         backgroundColor: Color.fromRGBO(226, 252, 229, 1),
         body: SingleChildScrollView(
@@ -52,7 +52,7 @@ class _ForumState extends State<ForumPage> {
                       title: BlocBuilder<ForumBloc, ForumState>(
                         bloc: forumBloc,
                         builder: (context, state) {
-                          if (state is ForumInitial) {
+                          if (state is ForumInitial||state is ForumLoading) {
                             return Center(
                               child: CircularProgressIndicator(
                                 strokeWidth: 5,
@@ -67,28 +67,30 @@ class _ForumState extends State<ForumPage> {
                       trailing: IconButton(
                         icon: Icon(Icons.add),
                         onPressed: () {
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CreateThread()));
+                        //  deactivate();
+                      //    dispose();
+                      Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => BlocProvider.value(value: forumBloc,child: CreateThread())));
                         },
                       ),
                     )),
                 SizedBox(
                   height: 40,
                 ),
+
                 BlocBuilder<ForumBloc, ForumState>(
                   bloc: forumBloc,
                   builder: (context, state) {
-                    if (state is ForumInitial) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          strokeWidth: 5,
-                        ),
-                      );
-                    } else if (state is ForumLoaded) {
-
+                    if (state is PostCreated)
+                    {
+                      forumBloc.add(GetPostList()); 
+                    }        
+                   if (state is ForumLoaded) {
                       //return listview.builder(state.threads);
                       return ListView.builder(
                         padding: const EdgeInsets.only(bottom: 100),
                         itemCount: state.threads.length,
+                        physics: ScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           DateTime parseDt = DateTime.parse(
@@ -96,24 +98,24 @@ class _ForumState extends State<ForumPage> {
                                   "2022-01-25 05:16:23");
                           return Column(
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ThreadView(
-                                          thread: state.threads[index])));
-                                },
-                                child: Container(
-                                  height: 300,
-                                  width: 600,
-                                  decoration: ShapeDecoration(
-                                      color: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)))),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        ListTile(
+                              Container(
+                                height: 300,
+                                width: 600,
+                                decoration: ShapeDecoration(
+                                    color: Colors.white,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20)))),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                                  Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (context) => ThreadView(
+                                                          thread: state.threads[index])));
+                                                },
+                                        child: ListTile(
                                           title: Text(
                                               state.threads[index].title ??
                                                   "kosong"),
@@ -128,25 +130,25 @@ class _ForumState extends State<ForumPage> {
                                                   "-" +
                                                   parseDt.year.toString()),
                                         ),
-                                        Divider(
-                                          height: 1,
-                                          color: Colors.black,
+                                      ),
+                                      Divider(
+                                        height: 1,
+                                        color: Colors.black,
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Expanded(
+                                          child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Align(
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              state.threads[index].text ??
+                                                  "kosong"),
                                         ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Expanded(
-                                            child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: Align(
-                                            alignment: Alignment.topLeft,
-                                            child: Text(
-                                                state.threads[index].text ??
-                                                    "kosong"),
-                                          ),
-                                        ))
-                                      ],
-                                    ),
+                                      ))
+                                    ],
                                   ),
                                 ),
                               ),

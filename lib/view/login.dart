@@ -11,7 +11,7 @@ class _LoginState extends State<Login> {
   TextEditingController _usernameController = new TextEditingController();
 
   TextEditingController _passwordController = new TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +40,23 @@ class _LoginState extends State<Login> {
           bloc: authBloc,
           builder: (context, state) {
             return Form(
+              key: _formKey,
               child: Container(
-                  key: _formKey,
                   decoration: BuildBG(),
                   child: Center(
                     child: Stack(children: [
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Container(
+                          decoration: ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),color: Colors.white),
+                        ),
+                      ),  
+
+                      
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              height: 52,
-                            ),
-                            Image.asset(
-                              'assets/images/Chainvapelogos_transparent21.png',
-                              height: 69,
-                              width: 302,
-                            ),
+                  
                             SizedBox(
                               height: 50,
                             ),
@@ -64,57 +65,55 @@ class _LoginState extends State<Login> {
                               padding: const EdgeInsets.all(50.0),
                               child: Column(
                                 children: [
-                                  Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: buildText("Email")),
+                                  // Align(
+                                  //     alignment: Alignment.centerLeft,
+                                  //     child: buildText("Email")),
+                                  //     SizedBox(
+                                  //   height: 5,
+                                  // ),
                                   Center(
-                                    child: Container(
-                                      width: 343,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                      ),
-                                      child: Material(
-                                        type: MaterialType.transparency,
-                                        child: TextFormField(
-                                          // to trigger disabledBorder
-                                          style: TextStyle(color: Colors.black),
-                                          decoration: buildTextfield(""),
-                                          controller: _usernameController,
-                                          //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                          obscureText: false,
-                                        ),
-                                      ),
+                                    child: TextFormField(
+                                      // to trigger disabledBorder
+                                      style: TextStyle(color: Colors.black),
+                                      decoration: buildTextfield("Email"),
+                                      controller: _usernameController,
+                                      //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                      obscureText: false,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'Silahkan Masukkan Email';
+                                        }
+                                        return null;
+                                      },
                                     ),
                                   ),
                                   SizedBox(
                                     height: 10,
                                   ),
-                                  Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: buildText("Password")),
+                                  // Align(
+                                  //     alignment: Alignment.centerLeft,
+                                  //     child: buildText("Password")),
+                                  //     SizedBox(
+                                  //   height: 5,
+                                  // ),
                                   Center(
-                                    child: Container(
-                                      width: 343,
-                                      height: 50,
-                                      decoration: BoxDecoration(
-                                        color: Colors.transparent,
-                                      ),
-                                      child: Material(
-                                        type: MaterialType.transparency,
-                                        child: TextFormField(
-                                          // to trigger disabledBorder
-                                          style: TextStyle(color: Colors.black),
-                                          decoration: buildTextfield(""),
-                                          controller: _passwordController,
-                                          //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                          obscureText: true,
-                                        ),
-                                      ),
+                                    child: TextFormField(
+                                      // to trigger disabledBorder
+                                      style: TextStyle(color: Colors.black),
+                                      decoration: buildTextfield("Password"),
+                                      controller: _passwordController,
+                                      //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                      obscureText: true,
+                                      validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Silahkan Masukkan Password';
+                                    }
+                                    return null;
+                                    },
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 10,
+                                    height: 20,
                                   ),
                                   Align(
                                     alignment: Alignment.centerRight,
@@ -125,7 +124,11 @@ class _LoginState extends State<Login> {
                                           color: Colors.transparent,
                                         ),
                                         child: ElevatedButton(
-                                          onPressed: _login,
+                                          onPressed: (){
+                                            if (_formKey.currentState!.validate()) {
+                                              _login();
+                                            }
+                                          },
                                           child: (state is AuthLoading)
                                               ? CircularProgressIndicator()
                                               : Text(

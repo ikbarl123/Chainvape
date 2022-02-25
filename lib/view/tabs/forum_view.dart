@@ -60,45 +60,42 @@ class _ThreadViewState extends State<ThreadViewPage> {
               children: [
                 // SizedBox(height: 10,),
                 Center(
-                  child: SizedBox(
-                    child: Container(
-                      height: 500,
-                      width: 600,
-                      decoration: ShapeDecoration(
-                          color: Colors.white,
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)))),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(widget.thread.title??"title"),
-                              subtitle: Text('created by ${widget.thread.author?.name??"empty"}'),
-                              trailing: Text(threadDt.day.toString() +
-                                                  "-" +
-                                                  threadDt.month.toString() +
-                                                  "-" +
-                                                  threadDt.year.toString()),
+                  child: Container(
+                   // height: 500,
+                    width: 600,
+                    decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20)))),
+                    child: Center(
+                      child: Column(
+                        children: [
+                          ListTile(
+                            title: Text(widget.thread.title??"title"),
+                            subtitle: Text('created by ${widget.thread.author?.name??"empty"}'),
+                            trailing: Text(threadDt.day.toString() +
+                                                "-" +
+                                                threadDt.month.toString() +
+                                                "-" +
+                                                threadDt.year.toString()),
+                          ),
+                          Divider(
+                            height: 1,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                              widget.thread.text??"text",),
                             ),
-                            Divider(
-                              height: 1,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Text(
-                                    widget.thread.text??"text",),
-                              ),
-                            ))
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
                   ),
@@ -118,7 +115,7 @@ class _ThreadViewState extends State<ThreadViewPage> {
                   builder: (context, state) {
                     if (state is RepliesLoaded) {
                       return ListView.builder(
-                        padding: const EdgeInsets.only(bottom: 100),
+                        //padding: const EdgeInsets.only(bottom: 100),
                         shrinkWrap: true,
                         itemCount: state.replies.length,
                         itemBuilder: (context, index) {
@@ -129,8 +126,6 @@ class _ThreadViewState extends State<ThreadViewPage> {
                             children: [
                               Center(
                                 child: Container(
-                                  height: 300,
-                                  width: 600,
                                   decoration: ShapeDecoration(
                                       color: Colors.white,
                                       shape: RoundedRectangleBorder(
@@ -159,15 +154,14 @@ class _ThreadViewState extends State<ThreadViewPage> {
                                         SizedBox(
                                           height: 5,
                                         ),
-                                        Expanded(
-                                            child: Padding(
+                                        Padding(
                                           padding: const EdgeInsets.all(20.0),
                                           child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                  state.replies[index].text ??
-                                                      "kosong")),
-                                        ))
+                                          alignment: Alignment.topLeft,
+                                          child: Text(
+                                              state.replies[index].text ??
+                                                  "kosong")),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -181,82 +175,17 @@ class _ThreadViewState extends State<ThreadViewPage> {
                         },
                       );
                     }
-                    return Container();
-                  },
-                ),
-
-                BlocBuilder<RepliesBloc, RepliesState>(
-                  bloc: repliesBloc,
-                  builder: (context, state) {
-                    if (state is ReplyCreated) {
-                      return ListView.builder(
-                        padding: const EdgeInsets.only(bottom: 100),
-                        shrinkWrap: true,
-                        itemCount: state.replies.length,
-                        itemBuilder: (context, index) {
-                          DateTime parseDt = DateTime.parse(
-                              state.replies[index].createdAt ??
-                                  "2022-01-25 05:16:23");
-                          return Column(
-                            children: [
-                              Center(
-                                child: Container(
-                                  height: 300,
-                                  width: 600,
-                                  decoration: ShapeDecoration(
-                                      color: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(20)))),
-                                  child: Center(
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          title: Text(state.replies[index]
-                                                  .owner?.name ??
-                                              "kosong"),
-                                          leading:
-                                              Icon(Icons.portrait_rounded),
-                                          trailing: Text(
-                                              parseDt.day.toString() +
-                                                  "-" +
-                                                  parseDt.month.toString() +
-                                                  "-" +
-                                                  parseDt.year.toString()),
-                                        ),
-                                        Divider(
-                                          height: 1,
-                                          color: Colors.black,
-                                        ),
-                                        SizedBox(
-                                          height: 5,
-                                        ),
-                                        Expanded(
-                                            child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(
-                                                  state.replies[index].text ??
-                                                      "kosong")),
-                                        ))
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                            ],
-                          );
-                        },
+                    if (state is ForumRepliesEmpty)
+                    {
+                      return Center(
+                        child: Text("No replies yet"),
                       );
                     }
                     return Container();
                   },
                 ),
 
+                
                 Align(
                     alignment: Alignment.centerLeft,
                     child: buildText("Post Reply")),

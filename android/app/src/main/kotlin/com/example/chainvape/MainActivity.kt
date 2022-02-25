@@ -1,4 +1,4 @@
-package com.example.chainvape
+package com.AlimUntung.chainvape
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -20,8 +20,8 @@ class RepliesBloc extends Bloc<RepliesEvent, RepliesState> {
       
       if (replies.isEmpty) {
         emit(ForumRepliesEmpty());
-      }
-      emit(RepliesLoaded(replies));
+      } else {
+      emit(RepliesLoaded(replies));}
     });
 
     on<CreateReply>((event, emit) async {

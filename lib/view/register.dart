@@ -43,132 +43,120 @@ class _RegisterState extends State<Register> {
           bloc: authBloc,
           builder: (context, state) {
             return Form(
+              key: _formKey,
               child: Container(
-                  key: _formKey,
                   decoration: BuildBG(),
                   child: Stack(children: [
+                     Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Container(
+                          decoration: ShapeDecoration(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),color: Colors.white),
+                        ),
+                      ),  
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
-                            height: 52,
-                          ),
-                          Image.asset(
-                            'assets/images/Chainvapelogos_transparent21.png',
-                            height: 69,
-                            width: 302,
-                          ),
-                          SizedBox(
-                            height: 30,
+                            height: 50,
                           ),
                           buildTitle("Register"),
                           Padding(
                             padding: const EdgeInsets.all(50.0),
                             child: Column(
                               children: [
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: buildText("Nama")),
+                                // Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: buildText("Nama")),
                                 Center(
-                                  child: Container(
-                                    width: 343,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                    ),
-                                    child: Material(
-                                      type: MaterialType.transparency,
-                                      child: TextFormField(
-                                        // to trigger disabledBorder
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: buildTextfield(""),
-                                        controller: _namaController,
-                                        //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                        obscureText: false,
-                                      ),
-                                    ),
+                                  child: TextFormField(
+                                    // to trigger disabledBorder
+                                    style: TextStyle(color: Colors.black),
+                                    decoration: buildTextfield("Nama"),
+                                    controller: _namaController,
+                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                    obscureText: false,
+                                    validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Silahkan Masukkan Nama';
+                                    }
+                                    return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 20,
                                 ),
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: buildText("Email")),
+                                // Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: buildText("Email")),
                                 Center(
-                                  child: Container(
-                                    width: 343,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                    ),
-                                    child: Material(
-                                      type: MaterialType.transparency,
-                                      child: TextFormField(
-                                        // to trigger disabledBorder
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: buildTextfield(""),
-                                        controller: _emailController,
-                                        //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                        obscureText: false,
-                                      ),
-                                    ),
+                                  child: TextFormField(
+                                    // to trigger disabledBorder
+                                    style: TextStyle(color: Colors.black),
+                                    decoration: buildTextfield("Email"),
+                                    controller: _emailController,
+                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                    obscureText: false,
+                                    validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Silahkan Masukkan Email';
+                                    } if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                                          return "Silahkan masukkan Email";
+                                        }
+                                    return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 20,
                                 ),
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: buildText("Password")),
+                                // Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: buildText("Password")),
                                 Center(
-                                  child: Container(
-                                    width: 343,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                    ),
-                                    child: Material(
-                                      type: MaterialType.transparency,
-                                      child: TextFormField(
-                                        // to trigger disabledBorder
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: buildTextfield(""),
-                                        controller: _passwordController,
-                                        //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                        obscureText: true,
-                                      ),
-                                    ),
+                                  child: TextFormField(
+                                    // to trigger disabledBorder
+                                    style: TextStyle(color: Colors.black),
+                                    decoration: buildTextfield("Password"),
+                                    controller: _passwordController,
+                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                    obscureText: true,
+                                    validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Silahkan Masukkan Password';
+                                    } if (value.length < 8) {
+                                      return 'Password minimal 8 karakter';
+                                    }
+                                    return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 20,
                                 ),
-                                Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: buildText("Confirm Password")),
+                                // Align(
+                                //     alignment: Alignment.centerLeft,
+                                //     child: buildText("Confirm Password")),
                                 Center(
-                                  child: Container(
-                                    width: 343,
-                                    height: 50,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                    ),
-                                    child: Material(
-                                      type: MaterialType.transparency,
-                                      child: TextFormField(
-                                        // to trigger disabledBorder
-                                        style: TextStyle(color: Colors.black),
-                                        decoration: buildTextfield(""),
-                                        controller: _passwordconfController,
-                                        //onChanged: _authenticationFormBloc.onPasswordChanged,
-                                        obscureText: true,
-                                      ),
-                                    ),
+                                  child: TextFormField(
+                                    // to trigger disabledBorder
+                                    style: TextStyle(color: Colors.black),
+                                    decoration: buildTextfield("Konfirmasi Password"),
+                                    controller: _passwordconfController,
+                                    //onChanged: _authenticationFormBloc.onPasswordChanged,
+                                    obscureText: true,
+                                    validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Silahkan Masukkan Password';
+                                    } else if (value != _passwordController.text) {
+                                      return 'Password Tidak Sama';
+                                    }
+                                    return null;
+                                    },
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 10,
+                                  height: 20,
                                 ),
                                 Align(
                                   alignment: Alignment.centerRight,
@@ -179,7 +167,11 @@ class _RegisterState extends State<Register> {
                                         color: Colors.transparent,
                                       ),
                                       child: ElevatedButton(
-                                        onPressed: _register,
+                                        onPressed: (){
+                                            if (_formKey.currentState!.validate()) {
+                                              _register();
+                                            }
+                                          },
                                         child: (state is AuthLoading)
                                             ? CircularProgressIndicator()
                                             : Text(

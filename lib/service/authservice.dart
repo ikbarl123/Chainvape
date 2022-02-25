@@ -12,15 +12,12 @@ Future doLogin(String _email, String _password) async {
     'password': _password
   });
  var data = jsonDecode(response.body.toString());
-
 if(response.statusCode==401){
      return data['message'];
    } else 
    if(response.statusCode==201){
     return User.fromJson(data);
    } return "Unkown error";
-
-
   }catch(e){
     return e;
   }
@@ -36,11 +33,30 @@ Future doRegister(String _nama, String _email, String _password,String _conpassw
     'password':_password,
     'password_confirmation':_conpassword
   });
- var data = jsonDecode(response.body.toString());
+ var data = jsonDecode(response.body);
+print(response.body);
+print(response.statusCode);
 
-if(response.statusCode==401){
-     return data['message'];
-   } else 
+
+   if(response.statusCode == 422){
+     if (data['errors']['name'][0]=="The name field is required."){
+       return 'nama tidak boleh kosong';
+     } else if (data['errors']['email'][0]=="The email has already been taken."){
+       return 'email sudah digunakan';
+     } else if (data['errors']['email'][0]=="The email must be a valid email address."){
+       return 'email tidak valid';
+     } else if (data['errors']['email'][0]=="The email field is required."){
+       return 'email tidak boleh kosong';
+     } else if (data['errors']['password'][0]=="The password field is required."){
+      return 'password tidak boleh kosong';
+     } else if (data['errors']['password'][0]=="The password must be at least 8 characters."){
+       return 'password minimal 8 karakter';
+     } else if (data['errors']['password'][0]=="The password confirmation does not match."){
+       return 'konfirmasi password tidak sesuai';
+     } else {
+       return "Silahkan isi semua form";
+     }
+   } 
    if(response.statusCode==201){
     return User.fromJson(data);
    } return "Unkown error";
